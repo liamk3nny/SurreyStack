@@ -11,9 +11,11 @@
 /Users/liamkenny/Documents/University/Year 3/Web Technologies/Coursework/SurreyStack/SurreyStack/src/main/java/com/group10/surreystack/controllers/LoginController.java
 /Users/liamkenny/Documents/University/Year 3/Web Technologies/Coursework/SurreyStack/SurreyStack/src/main/java/com/group10/surreystack/services/UserService.java
 /Users/liamkenny/Documents/University/Year 3/Web Technologies/Coursework/SurreyStack/SurreyStack/src/main/java/com/group10/surreystack/MainInitialiser.java
+/Users/liamkenny/Documents/University/Year 3/Web Technologies/Coursework/SurreyStack/SurreyStack/src/main/java/com/group10/surreystack/services/TagService.java
 /Users/liamkenny/Documents/University/Year 3/Web Technologies/Coursework/SurreyStack/SurreyStack/src/main/java/com/group10/surreystack/services/PostServiceStubImpl.java
 /Users/liamkenny/Documents/University/Year 3/Web Technologies/Coursework/SurreyStack/SurreyStack/src/main/java/com/group10/surreystack/services/NotificationServiceImpl.java
 /Users/liamkenny/Documents/University/Year 3/Web Technologies/Coursework/SurreyStack/SurreyStack/src/main/java/com/group10/surreystack/forms/LoginForm.java
 /Users/liamkenny/Documents/University/Year 3/Web Technologies/Coursework/SurreyStack/SurreyStack/src/main/java/com/group10/surreystack/models/User.java
+/Users/liamkenny/Documents/University/Year 3/Web Technologies/Coursework/SurreyStack/SurreyStack/src/main/java/com/group10/surreystack/services/TagServiceStubImpl.java
 /Users/liamkenny/Documents/University/Year 3/Web Technologies/Coursework/SurreyStack/SurreyStack/src/main/java/com/group10/surreystack/models/Comment.java
 /Users/liamkenny/Documents/University/Year 3/Web Technologies/Coursework/SurreyStack/SurreyStack/src/main/java/com/group10/surreystack/services/NotificationService.java

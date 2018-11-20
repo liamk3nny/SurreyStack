@@ -16,6 +16,7 @@ import com.group10.surreystack.models.User;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 /**
  *
@@ -26,7 +27,7 @@ public class PostServiceStubImpl implements PostService {
     private List<Post> posts = new ArrayList<Post>() {{
         add(new Post(1L, "First Post", "<p>body.</p><p>Line #2</p>", null, null));
         add(new Post(2L, "Second Post","Second post content:<ul><li>line 1</li><li>line 2</li></p>", new User(10L, "pesho10", "Peter Ivanov"),new Tag(10L,"CS")));
-        add(new Post(3L, "Post #3", "<p>The post number 3 nice</p>", new User(10L, "merry", null), new Tag(2L,"maths")));
+        add(new Post(3L, "Post #3", "<p>The post number 3 nice</p>", new User(10L, "merry", null), new Tag(2L,"Business")));
 
     }};
 
@@ -79,5 +80,13 @@ public class PostServiceStubImpl implements PostService {
             }
         }
         throw new RuntimeException("Post not found: " + id);
+    }
+
+    @Override
+    public List<Post> findByTag(Tag tag) {
+        
+        return this.posts.stream()
+                .filter(p -> Objects.equals(p.getTag(), tag))
+                .collect(Collectors.toList());
     }
 }

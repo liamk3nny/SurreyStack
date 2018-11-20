@@ -11,8 +11,8 @@
 
 
         <aside>
-            <h2>Recent Posts</h2>
-            <a href="#" th:each="p : ${latest5posts}" th:text="${p.title}" th:href="@{/posts/view/{id}/(id=${p.id})}"></a>
+            <h2>Tags</h2>
+            <a href="#" th:each="p : ${alltags}" th:text="${p.name}" th:href="@{/tags/view/{id}/(id=${p.id})}"></a>
         </aside>
 
         <main id="posts">
