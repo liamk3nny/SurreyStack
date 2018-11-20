@@ -25,8 +25,11 @@
             </article>
             <h3>Comments:</h3>
             <article th:each="c : ${postComments}">
-                
-                <p class="content" th:utext="${c.body}">Comment body</p>
+                <span style="font-weight: bold;" th:text="${c.author.getUsername()}"></span>
+                <span th:text="${c.body}"></span>
+                <p class="content" th:text="${#dates.format(c.date, 'dd-MMM-yyyy')}"></p>
+               
+
             </article>
             
         </main>
