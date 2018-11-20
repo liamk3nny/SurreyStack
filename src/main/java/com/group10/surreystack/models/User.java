@@ -17,8 +17,7 @@ private Long id;
 private String username;
 private String passwordHash;
 private String fullName;
-private Set<Post> posts = new HashSet<>();
-private Set<Comment> comments = new HashSet<>();
+
 
     @Override
     public String toString() {
@@ -50,14 +49,6 @@ private Set<Comment> comments = new HashSet<>();
         this.fullName = fullName;
     }
 
-    public void setPosts(Set<Post> posts) {
-        this.posts = posts;
-    }
-
-    public void setComments(Set<Comment> comments) {
-        this.comments = comments;
-    }
-
     public Long getId() {
         return id;
     }
@@ -73,13 +64,4 @@ private Set<Comment> comments = new HashSet<>();
     public String getFullName() {
         return fullName;
     }
-
-    public Set<Post> getPosts() {
-        return posts;
-    }
-
-    public Set<Comment> getComments() {
-        return comments;
-    }
-
 }
