@@ -33,6 +33,8 @@ public class LoginController {
     public String login(LoginForm loginForm) {
         return "users/login";
     }
+   
+   
 
     @RequestMapping(value = "/users/login", method = RequestMethod.POST)
     public String loginPage(@Valid LoginForm loginForm, BindingResult bindingResult) {

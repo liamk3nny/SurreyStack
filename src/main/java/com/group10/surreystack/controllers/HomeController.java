@@ -5,6 +5,7 @@
  */
 package com.group10.surreystack.controllers;
 
+import com.group10.surreystack.forms.LoginForm;
 import com.group10.surreystack.models.Post;
 import com.group10.surreystack.services.PostService;
 import java.util.List;
@@ -23,7 +24,18 @@ public class HomeController {
     @Autowired
     private PostService postService;
 
+    @RequestMapping(value = "/")
+    public String defaultURL(Model model) {
+        List<Post> latest5Posts = postService.findLatest5();
+        model.addAttribute("latest5posts", latest5Posts);
+       
 
+        List<Post> latest3Posts = latest5Posts.stream().limit(3).collect(Collectors.toList());
+        model.addAttribute("latest3posts", latest3Posts);
+        
+        return "home";
+    }
+    
     @RequestMapping(value = "/home")
     public String index(Model model) {
 
