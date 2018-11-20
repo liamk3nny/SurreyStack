@@ -8,12 +8,23 @@
     <body>
 
         <header th:replace="layout :: site-header" />
-
-        <main id="tags">
-            <article>
-                <h2 class="name" th:text="${tag.name}">Tag Name</h2>
-                
-                
+        <h2 class="name" th:text="${tag.name}">Tag Name</h2>
+        
+        <main id="posts">
+            <article th:each="p : ${posts}">
+                <h2 class="title" th:text="${p.title}">Post Title</h2>
+                <div class="date">
+                    <i>Posted on</i>
+                    <span th:text="${#dates.format(p.date, 'dd-MMM-yyyy')}"></span>
+                    <span th:if="${p.author}" th:remove="tag">
+                        <i>by</i>
+                        <span th:text="${p.author.fullName != null ?
+                              p.author.fullName : p.author.username}"></span>
+                    </span>
+                    <i>Tagged</i>
+                    <span th:text="${p.tag.name}"></span>
+                </div>
+                <p class="content" th:utext="${p.body}">Post content</p>
             </article>
         </main>
         

@@ -24,6 +24,7 @@ import java.util.stream.Collectors;
  */
 @Service
 public class PostServiceStubImpl implements PostService {
+    
     private List<Post> posts = new ArrayList<Post>() {{
         add(new Post(1L, "First Post", "<p>body.</p><p>Line #2</p>", null, null));
         add(new Post(2L, "Second Post","Second post content:<ul><li>line 1</li><li>line 2</li></p>", new User(10L, "pesho10", "Peter Ivanov"),new Tag(10L,"CS")));
