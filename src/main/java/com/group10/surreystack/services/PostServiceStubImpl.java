@@ -25,19 +25,18 @@ import java.util.stream.Collectors;
 @Service
 public class PostServiceStubImpl implements PostService {
     
+
     private User user = new User(5L, "username1", "Ignas Kampas");
     
+
     private List<Post> posts = new ArrayList<Post>() {{
         add(new Post(1L, "First Post", "<p>body.</p><p>Line #2</p>", user, null));
         add(new Post(2L, "Second Post","Second post content:<ul><li>line 1</li><li>line 2</li></p>", new User(10L, "pesho10", "Peter Ivanov"),new Tag(10L,"CS")));
-<<<<<<< HEAD
+
         add(new Post(3L, "Post #3", "<p>The post number 3 nice</p>", new User(10L, "merry", null), new Tag(2L,"maths")));
         add(new Post(4L, "Post #4", "This is post 4 body", user, null));
-=======
-        add(new Post(3L, "Post #3", "<p>The post number 3 nice</p>", new User(10L, "merry", null), new Tag(2L,"Business")));
 
->>>>>>> created tags service and view on home page
-    }};
+  }};
 
     
     

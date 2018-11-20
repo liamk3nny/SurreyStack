@@ -17,11 +17,11 @@ public interface PostService {
     List<Post> findAll();
     List<Post> findLatest5();
     Post findById(Long id);
-<<<<<<< HEAD
+
     List<Post> findUserPosts(Long userId);
-=======
+
     List<Post> findByTag(Tag tag);
->>>>>>> created tags service and view on home page
+
     Post create(Post post);
     Post edit(Post post);
     void deleteById(Long id);

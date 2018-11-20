@@ -5,9 +5,12 @@
  */
 package com.group10.surreystack.controllers;
 
+import com.group10.surreystack.models.Post;
 import com.group10.surreystack.models.Tag;
 import com.group10.surreystack.services.NotificationService;
+import com.group10.surreystack.services.PostService;
 import com.group10.surreystack.services.TagService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +26,8 @@ public class TagController {
     @Autowired
     private TagService tagService;
     
+    @Autowired PostService postService;
+    
     @Autowired
     private NotificationService notifyService;
       
@@ -34,6 +39,9 @@ public class TagController {
                 notifyService.addErrorMessage("Cannot find tag #" + id);
                 return "redirect:/home";
             }
-        return "posts/view";
+        
+        List<Post> posts = postService.findByTag(tag);
+        model.addAttribute("posts", posts);
+        return "tags/view";
     }
 }
