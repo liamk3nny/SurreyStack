@@ -8,5 +8,10 @@
     <body>
         <header th:replace="layout :: site-header" />
         <h1>Profile</h1>
+        
+        <main>
+            <p th:text="${username}">Username</p>
+            <p th:text="${fullName}">Full name</p>
+        </main>
     </body>
 </html>
