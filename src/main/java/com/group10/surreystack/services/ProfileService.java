@@ -11,6 +11,7 @@ package com.group10.surreystack.services;
  */
 public interface ProfileService {
     
+    public Long getUserId();
     public String getUsername();
     public String getFullName();
     

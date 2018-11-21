@@ -27,4 +27,9 @@ public class ProfileServiceStubImpl implements ProfileService{
         return this.user.getFullName();
     }
     
+    @Override
+    public Long getUserId(){
+        return this.user.getId();
+    }
+    
 }
