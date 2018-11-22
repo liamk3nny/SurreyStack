@@ -6,6 +6,7 @@
 package com.group10.surreystack.controllers;
 
 import com.group10.surreystack.forms.CreatePostForm;
+import com.group10.surreystack.forms.CommentForm;
 import com.group10.surreystack.models.Comment;
 import com.group10.surreystack.models.Post;
 import com.group10.surreystack.services.CommentService;
@@ -37,15 +38,11 @@ public class PostsController {
     private NotificationService notifyService;
       
     @RequestMapping("/posts/view/{id}")
-    public String view(@PathVariable("id") Long id, Model model) {
+    public String view(@PathVariable("id") Long id, Model model, CommentForm commentForm) {
         Post post = postService.findById(id);
+        model.addAttribute("post", post);
         List<Comment> postComments = commentService.findComments(id);
         model.addAttribute("postComments", postComments);
-        if (postComments == null) {
-            notifyService.addErrorMessage("Cannot find comments");
-            return "redirect:/home";
-        }
-        model.addAttribute("post", post);
         if (post == null) {
                 notifyService.addErrorMessage("Cannot find post #" + id);
                 return "redirect:/home";
@@ -57,6 +54,16 @@ public class PostsController {
     public String createPostPage(CreatePostForm createPostForm){
         return "posts/create";
     }
+
+//    @RequestMapping(value = "/posts/view/{id}", method = RequestMethod.POST)
+//    public String addComment(@Valid CommentForm commentForm, BindingResult bindingResult) {
+//        if(bindingResult.hasErrors()) {
+//            notifyService.addErrorMessage("Please leave a correct comment");
+//            return "posts/view";
+//        }
+//        notifyService.addInfoMessage("Comment posted");
+//        return "posts/view";
+//    }
 
     @RequestMapping(value = "/posts/create", method = RequestMethod.POST)
     public String createPost(@Valid CreatePostForm createPostForm, BindingResult bindingResult) {
