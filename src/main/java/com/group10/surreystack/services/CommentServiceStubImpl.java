@@ -22,6 +22,7 @@ public class CommentServiceStubImpl implements CommentService{
         
     List<Comment> comments = new ArrayList<Comment>() {{
         add(new Comment(1L, "This is a comment", new User(20L, "madfro", "Maddie Frost"), 1L));
+        add(new Comment(2L, "This is another comment", new User(20L, "madfro", "Maddie Frost"), 1L));
     }};
     
     @Override
