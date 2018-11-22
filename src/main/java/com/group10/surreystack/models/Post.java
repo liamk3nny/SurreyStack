@@ -45,6 +45,10 @@ private Date date = new Date();
     public User getAuthor() {
         return author;
     }
+    
+    public Long getUserId(){
+        return this.author.getId();
+    }
 
     public Tag getTag() {
         return tag;
