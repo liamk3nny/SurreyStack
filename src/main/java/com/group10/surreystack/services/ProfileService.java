@@ -5,6 +5,8 @@
  */
 package com.group10.surreystack.services;
 
+import com.group10.surreystack.models.User;
+
 /**
  *
  * @author ikamp
@@ -14,5 +16,6 @@ public interface ProfileService {
     public Long getUserId();
     public String getUsername();
     public String getFullName();
+    
     
 }

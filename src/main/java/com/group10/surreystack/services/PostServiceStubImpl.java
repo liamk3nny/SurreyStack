@@ -28,7 +28,7 @@ public class PostServiceStubImpl implements PostService {
 
     private User user = new User(5L, "username1", "Ignas Kampas");
     private User user2 = new User(6L, "username2", "Liam Kenny");
-    private User user3 = new User(5L, "username3", "Arun Subramanium");
+    private User user3 = new User(7L, "username3", "Arun Subramanium");
     
     private List<Tag> tags = new ArrayList<Tag>() {{
         add(new Tag(11L, "Computer Science"));
