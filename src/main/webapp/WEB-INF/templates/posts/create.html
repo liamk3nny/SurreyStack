@@ -17,6 +17,10 @@
             <input id="title" type="text" name="title" th:value="*{title}" />
             <span class="formError" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Invalid title</span>
 
+            <div><label for="tag" >Tag:</label></div>
+            <input id="tag" type="text" name="tag" th:value="*{tag}" />
+            <span class="formError" th:if="${#fields.hasErrors('tag')}" th:errors="*{tag}">Invalid tag</span>
+            
             <div><label for="body" >Write a post..</label></div>
             <input id="body" type="text" name="body" th:value="*{body}" />
             <span class="formError" th:if="${#fields.hasErrors('body')}" th:errors="*{body}">Invalid body</span>
