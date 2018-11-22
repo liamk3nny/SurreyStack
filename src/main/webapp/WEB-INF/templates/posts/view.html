@@ -10,7 +10,7 @@
         <header th:replace="layout :: site-header" />
 
         <main id="posts">
-            <article th:each="p : ${posts}">
+            <article th:each="p : ${post}">
                 <h2 class="title" th:text="${p.title}">Post Title</h2>
                 <div class="date">
                     <i>Posted on</i>

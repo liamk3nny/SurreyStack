@@ -34,14 +34,14 @@ public class PostsController {
       
     @RequestMapping("/posts/view/{id}")
     public String view(@PathVariable("id") Long id, Model model) {
+        //Post post = postService.findById(id);
         Post post = postService.findById(id);
+        model.addAttribute("post", post);
+        
+        
         List<Comment> postComments = commentService.findComments(id);
         model.addAttribute("postComments", postComments);
-        if (postComments == null) {
-            notifyService.addErrorMessage("Cannot find comments");
-            return "redirect:/home";
-        }
-        model.addAttribute("post", post);
+        
         if (post == null) {
                 notifyService.addErrorMessage("Cannot find post #" + id);
                 return "redirect:/home";
