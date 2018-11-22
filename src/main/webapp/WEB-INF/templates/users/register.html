@@ -20,7 +20,14 @@
             <input id="password" type="password" name="password" th:value="*{password}" />
             <span class="formError" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Invalid password</span>
 
+           <div><label for="name" th:value="*{name}">Name:</label></div>
+           <input id="name" type="text" name="name" th:value="*{name}" />
+           <span class="formError" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Invalid name</span>
            
+         
+           
+           <div><input type="submit" value="Signup"/>
+                <a href="login.html" th:href="@{/users/login}">Go back to login</a></div>
         </form>
 
     </body>

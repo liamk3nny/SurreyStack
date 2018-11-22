@@ -17,6 +17,8 @@ public class ProfileServiceStubImpl implements ProfileService{
 
     private User user = new User(5L, "username1", "Ignas Kampas");
     
+    
+    
     @Override
     public String getUsername() {
         return this.user.getUsername();

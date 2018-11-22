@@ -5,7 +5,9 @@
  */
 package com.group10.surreystack.services;
 
+import com.group10.surreystack.models.Post;
 import com.group10.surreystack.models.Tag;
+import com.group10.surreystack.models.User;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -18,12 +20,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class TagServiceStubImpl implements TagService{
     
+  
+    
     private List<Tag> tags = new ArrayList<Tag>() {{
         add(new Tag(11L, "Computer Science"));
         add(new Tag(12L, "Chemistry"));
         add(new Tag(13L, "Physics"));
 
     }};
+    
+  
 
     @Override
     public List<Tag> findAll() {

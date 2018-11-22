@@ -10,18 +10,20 @@
         <header th:replace="layout :: site-header" />
 
         <main id="posts">
-            <article>
-                <h2 class="title" th:text="${post.title}">Post Title</h2>
+            <article th:each="p : ${post}">
+                <h2 class="title" th:text="${p.title}">Post Title</h2>
                 <div class="date">
                     <i>Posted on</i>
-                    <span th:text="${#dates.format(post.date, 'dd-MMM-yyyy')}">I don't know the date</span>
-                    <span th:if="${post.author}" th:remove="tag">
+                    <span th:text="${#dates.format(p.date, 'dd-MMM-yyyy')}"></span>
+                    <span th:if="${p.author}" th:remove="tag">
                         <i>by</i>
-                        <span th:text="${post.author.fullName != null ?
-                              post.author.fullName : post.author.username}">Who</span>
+                        <span th:text="${p.author.fullName != null ?
+                              p.author.fullName : p.author.username}"></span>
                     </span>
+                    <i>Tagged</i>
+                    <span th:text="${p.tag.name}"></span>
                 </div>
-                <p class="content" th:utext="${post.body}">Post content</p>
+                <p class="content" th:utext="${p.body}">Post content</p>
             </article>
             
             <h3>Comments:</h3>
@@ -30,15 +32,14 @@
                 <span th:text="${c.body}"></span>
                 <p class="content" th:text="${#dates.format(c.date, 'dd-MMM-yyyy')}"></p>
             </article>
-            
+
             <form method="post" th:object="${commentForm}">
                 <div><label for="comment">Leave a comment below:</label></div>
                 <input id="comment" type="text" name="comment" th:value="*{comment}"/>
                 <div><input type="submit" value="Submit"/></div>
             </form>
-            
         </main>
-        
+
         <footer th:replace="layout :: site-footer" />
 
     </body>
