@@ -70,6 +70,15 @@ public class PostServiceStubImpl implements PostService {
     }
     
     @Override
+    public List<Post> findByTag(Tag tag) {
+        
+        return this.posts.stream()
+                .filter(p -> Objects.equals(p.getTag().getId(), tag.getId()))
+                .sorted((a, b) -> b.getDate().compareTo(a.getDate()))
+                .collect(Collectors.toList());
+    }
+    
+    @Override
     public List<Post> findUserPosts(Long userId){
         List<Post> userPosts = new ArrayList<Post>();
         for (Post p : posts){
@@ -110,11 +119,5 @@ public class PostServiceStubImpl implements PostService {
         throw new RuntimeException("Post not found: " + id);
     }
 
-    @Override
-    public List<Post> findByTag(Tag tag) {
-        
-        return this.posts.stream()
-                .filter(p -> Objects.equals(p.getTag(), tag))
-                .collect(Collectors.toList());
-    }
+    
 }

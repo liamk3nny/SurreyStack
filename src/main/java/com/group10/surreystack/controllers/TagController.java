@@ -42,6 +42,10 @@ public class TagController {
         
         List<Post> posts = postService.findByTag(tag);
         model.addAttribute("posts", posts);
+        if (posts == null) {
+                notifyService.addErrorMessage("Cannot find posts #" + id);
+                return "redirect:/home";
+            }
         return "tags/view";
     }
 }

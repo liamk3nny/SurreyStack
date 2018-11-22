@@ -10,25 +10,21 @@
         <header th:replace="layout :: site-header" />
 
         <main id="posts">
-            <article>
-                <h2 class="title" th:text="${post.title}">Post Title</h2>
+            <article th:each="p : ${posts}">
+                <h2 class="title" th:text="${p.title}">Post Title</h2>
                 <div class="date">
                     <i>Posted on</i>
-                    <span th:text="${#dates.format(post.date, 'dd-MMM-yyyy')}">I don't know the date</span>
-                    <span th:if="${post.author}" th:remove="tag">
+                    <span th:text="${#dates.format(p.date, 'dd-MMM-yyyy')}"></span>
+                    <span th:if="${p.author}" th:remove="tag">
                         <i>by</i>
-                        <span th:text="${post.author.fullName != null ?
-                              post.author.fullName : post.author.username}">Who</span>
+                        <span th:text="${p.author.fullName != null ?
+                              p.author.fullName : p.author.username}"></span>
                     </span>
+                    <i>Tagged</i>
+                    <span th:text="${p.tag.name}"></span>
                 </div>
-                <p class="content" th:utext="${post.body}">Post content</p>
+                <p class="content" th:utext="${p.body}">Post content</p>
             </article>
-            <h3>Comments:</h3>
-            <article th:each="c : ${postComments}">
-                
-                <p class="content" th:utext="${c.body}">Comment body</p>
-            </article>
-            
         </main>
         
         <footer th:replace="layout :: site-footer" />
