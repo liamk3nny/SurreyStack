@@ -23,14 +23,19 @@
                 </div>
                 <p class="content" th:utext="${post.body}">Post content</p>
             </article>
+            
             <h3>Comments:</h3>
             <article th:each="c : ${postComments}">
                 <span style="font-weight: bold;" th:text="${c.author.getUsername()}"></span>
                 <span th:text="${c.body}"></span>
                 <p class="content" th:text="${#dates.format(c.date, 'dd-MMM-yyyy')}"></p>
-               
-
             </article>
+            
+            <form method="post" th:object="${commentForm}">
+                <div><label for="comment">Leave a comment below:</label></div>
+                <input id="comment" type="text" name="comment" th:value="*{comment}"/>
+                <div><input type="submit" value="Submit"/></div>
+            </form>
             
         </main>
         

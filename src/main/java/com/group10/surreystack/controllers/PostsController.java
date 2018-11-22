@@ -5,17 +5,21 @@
  */
 package com.group10.surreystack.controllers;
 
+import com.group10.surreystack.forms.CommentForm;
 import com.group10.surreystack.models.Comment;
 import com.group10.surreystack.models.Post;
 import com.group10.surreystack.services.CommentService;
 import com.group10.surreystack.services.NotificationService;
 import com.group10.surreystack.services.PostService;
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  *
@@ -33,14 +37,10 @@ public class PostsController {
     private NotificationService notifyService;
       
     @RequestMapping("/posts/view/{id}")
-    public String view(@PathVariable("id") Long id, Model model) {
+    public String view(@PathVariable("id") Long id, Model model, CommentForm commentForm) {
         Post post = postService.findById(id);
         List<Comment> postComments = commentService.findComments(id);
         model.addAttribute("postComments", postComments);
-        if (postComments == null) {
-            notifyService.addErrorMessage("Cannot find comments");
-            return "redirect:/home";
-        }
         model.addAttribute("post", post);
         if (post == null) {
                 notifyService.addErrorMessage("Cannot find post #" + id);
@@ -48,5 +48,16 @@ public class PostsController {
             }
         return "posts/view";
     }
+    
+//    @RequestMapping(value = "/posts/view/{id}", method = RequestMethod.POST)
+//    public String addComment(@Valid CommentForm commentForm, BindingResult bindingResult) {
+//        if(bindingResult.hasErrors()) {
+//            notifyService.addErrorMessage("Please leave a correct comment");
+//            return "posts/view";
+//        }
+//        notifyService.addInfoMessage("Comment posted");
+//        return "posts/view";
+//    }
+    
 
 }
