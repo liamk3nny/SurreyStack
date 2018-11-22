@@ -30,7 +30,7 @@
             <article th:each="c : ${postComments}">
                 <span style="font-weight: bold;" th:text="${c.author.getUsername()}"></span>
                 <span th:text="${c.body}"></span>
-                <p class="content" th:text="${#dates.format(c.date, 'dd-MMM-yyyy')}"></p>
+                <p class="content" th:text="${#dates.format(c.date, 'dd-MMM-yyyy HH:mm:ss')}"></p>
             </article>
 
             <form method="post" th:object="${commentForm}">
