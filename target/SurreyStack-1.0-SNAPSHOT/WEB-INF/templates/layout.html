@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    
+    <head th:fragment="site-head">
+        <meta charset="UTF-8" />
+        <title> Surrey Stack</title>
+        <link rel="stylesheet" href="../../css/styles.css" th:href="@{/css/styles.css}" />
+        <link rel="icon" href="../../img/favicon.ico" th:href="@{/img/favicon.ico}" />
+        <script src="../../js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+        <script src="../../js/stack-scripts.js" th:src="@{/js/stack-scripts.js}"></script>
+    </head>
+    
+    <body>
+        <header th:fragment="site-header">
+            <a href="index.html" th:href="@{/home}"><img src="../../img/site-logo.png" th:src="@{/img/site-logo.png}" alt="whoops" style="width:40px;height:40px;"/> </a>
+            <a href="index.html" th:href="@{/home}">Home</a>
+            <a href="posts/create.html" th:href="@{/posts/create}">Create Post</a>
+            <a href="users/profile.html" th:href="@{/users/profile}">Profile</a>
+           
+            <div id="logged-in-info"> <span>Hello, <b>(user)</b></span>
+                <form method="post" th:action="@{/users/logout}">
+                    <input type="submit" value="Logout"/>
+                </form>
+            </div>
+            
+        </header> 
+        
+        <header th:fragment="login-header">
+            <a href="users/login.html" th:href="@{/users/login}"><img src="../../img/site-logo.png" th:src="@{/img/site-logo.png}" alt="whoops" style="width:40px;height:40px;"/> </a>
+        </header>
+        
+        <header th:fragment="register-header">
+            <a href="users/register.html" th:href="@{/users/register}"><img src="../../img/site-logo.png" th:src="@{/img/site-logo.png}" alt="whoops" style="width:40px;height:40px;"/> </a>
+        </header>
+
+        <ul id="messages" th:with="notifyMessages=${session[T(SurreyStack.services.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY]}">
+            <li th:each="msg : ${notifyMessages}" th:text="${msg.text}" th:class="${#strings.toLowerCase(msg.type)}"/>
+            
+            
+            <span th:if="${notifyMessages}" th:remove="all" th:text="${session.remove(T(SurreyStack.services.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY)}"></span>
+            
+            
+        </ul>
+        
+        </header>
+        
+        
+        <footer th:fragment="site-footer">
+          &copy;  Surrey Stack, 2018
+        </footer>
+    </body>
+</html>
