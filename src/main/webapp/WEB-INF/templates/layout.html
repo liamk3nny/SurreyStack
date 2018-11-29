@@ -24,22 +24,8 @@
                 <form method="post" th:action="@{/users/logout}">
                     <input type="submit" value="Logout"/>
                 </form>
-            </div>
-            
-        </header> 
-
-        <ul id="messages" th:with="notifyMessages=${session[T(SurreyStack.services.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY]}">
-            <li th:each="msg : ${notifyMessages}" th:text="${msg.text}" th:class="${#strings.toLowerCase(msg.type)}"/>
-            
-            
-            <span th:if="${notifyMessages}" th:remove="all" th:text="${session.remove(T(SurreyStack.services.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY)}"></span>
-            
-            
-        </ul>
-        
+            </div>   
         </header>
-        
-        
         <footer th:fragment="site-footer">
           &copy;  Surrey Stack, 2018
         </footer>
