@@ -7,7 +7,6 @@ C:\Users\aruns\Documents\NetBeansProjects\SurreyStack\src\main\java\com\group10\
 C:\Users\aruns\Documents\NetBeansProjects\SurreyStack\src\main\java\com\group10\surreystack\services\TagService.java
 C:\Users\aruns\Documents\NetBeansProjects\SurreyStack\src\main\java\com\group10\surreystack\services\UserService.java
 C:\Users\aruns\Documents\NetBeansProjects\SurreyStack\src\main\java\com\group10\surreystack\config\RootConfig.java
-C:\Users\aruns\Documents\NetBeansProjects\SurreyStack\src\main\java\com\group10\surreystack\services\NotificationService.java
 C:\Users\aruns\Documents\NetBeansProjects\SurreyStack\src\main\java\com\group10\surreystack\controllers\RegisterController.java
 C:\Users\aruns\Documents\NetBeansProjects\SurreyStack\src\main\java\com\group10\surreystack\controllers\HomeController.java
 C:\Users\aruns\Documents\NetBeansProjects\SurreyStack\src\main\java\com\group10\surreystack\controllers\LoginController.java
@@ -24,5 +23,4 @@ C:\Users\aruns\Documents\NetBeansProjects\SurreyStack\src\main\java\com\group10\
 C:\Users\aruns\Documents\NetBeansProjects\SurreyStack\src\main\java\com\group10\surreystack\services\PostServiceStubImpl.java
 C:\Users\aruns\Documents\NetBeansProjects\SurreyStack\src\main\java\com\group10\surreystack\controllers\TagController.java
 C:\Users\aruns\Documents\NetBeansProjects\SurreyStack\src\main\java\com\group10\surreystack\services\ProfileServiceStubImpl.java
-C:\Users\aruns\Documents\NetBeansProjects\SurreyStack\src\main\java\com\group10\surreystack\services\NotificationServiceImpl.java
 C:\Users\aruns\Documents\NetBeansProjects\SurreyStack\src\main\java\com\group10\surreystack\models\User.java

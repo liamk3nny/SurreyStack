@@ -64,7 +64,7 @@ public class PostServiceStubImpl implements PostService {
     @Override
     public Post findById(Long id) {
         return this.posts.stream()
-                .filter(p -> Objects.equals(p.getId(), id))
+                .filter(p -> Objects.equals(p.getPostID(), id))
                 .findFirst()
                 .orElse(null);
     }
@@ -91,8 +91,8 @@ public class PostServiceStubImpl implements PostService {
 
     @Override
     public Post create(Post post) {
-        post.setId(this.posts.stream().mapToLong(
-                p -> p.getId()).max().getAsLong() + 1);
+        post.setPostID(this.posts.stream().mapToLong(
+                p -> p.getPostID()).max().getAsLong() + 1);
         this.posts.add(post);
         return post;
     }
@@ -100,18 +100,18 @@ public class PostServiceStubImpl implements PostService {
     @Override
     public Post edit(Post post) {
         for (int i = 0; i < this.posts.size(); i++) {
-            if (Objects.equals(this.posts.get(i).getId(), post.getId())) {
+            if (Objects.equals(this.posts.get(i).getPostID(), post.getPostID())) {
                 this.posts.set(i, post);
                 return post;
             }
         }
-        throw new RuntimeException("Post not found: " + post.getId());
+        throw new RuntimeException("Post not found: " + post.getPostID());
     }
 
     @Override
     public void deleteById(Long id) {
         for (int i = 0; i < this.posts.size(); i++) {
-            if (Objects.equals(this.posts.get(i).getId(), id)) {
+            if (Objects.equals(this.posts.get(i).getPostID(), id)) {
                 this.posts.remove(i);
                 return;
             }

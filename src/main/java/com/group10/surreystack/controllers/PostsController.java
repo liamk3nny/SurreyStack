@@ -9,7 +9,6 @@ import com.group10.surreystack.forms.CommentForm;
 import com.group10.surreystack.models.Comment;
 import com.group10.surreystack.models.Post;
 import com.group10.surreystack.services.CommentService;
-import com.group10.surreystack.services.NotificationService;
 import com.group10.surreystack.services.PostService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +29,7 @@ public class PostsController {
     @Autowired
     private CommentService commentService;
     
-    @Autowired
-    private NotificationService notifyService;
+
       
     @RequestMapping("/posts/view/{id}")
     public String view(@PathVariable("id") Long id, Model model, CommentForm commentForm) {
@@ -40,7 +38,6 @@ public class PostsController {
         List<Comment> postComments = commentService.findComments(id);
         model.addAttribute("postComments", postComments);
         if (post == null) {
-                notifyService.addErrorMessage("Cannot find post #" + id);
                 return "redirect:/home";
             }
         return "posts/view";

@@ -6,7 +6,6 @@
 package com.group10.surreystack.controllers;
 
 import com.group10.surreystack.forms.RegisterForm;
-import com.group10.surreystack.services.NotificationService;
 import com.group10.surreystack.services.UserService;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +23,6 @@ public class RegisterController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private NotificationService notifyService;
     
     @RequestMapping("/users/register")
     public String register(RegisterForm registerForm) {
@@ -35,17 +32,14 @@ public class RegisterController {
     @RequestMapping(value = "/users/register", method = RequestMethod.POST)
     public String RegisterPage(@Valid RegisterForm registerForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-             notifyService.addErrorMessage("Please fill the form correctly!");
              return "users/register";
         }
 
         if (!userService.authenticate(
              registerForm.getUsername(), registerForm.getPassword())) {
-             notifyService.addErrorMessage("Invalid Registration!");
              return "users/register";
         }
 
-        notifyService.addInfoMessage("Registration successful");
         return "redirect:/users/login";
     }
 }

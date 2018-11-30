@@ -6,21 +6,50 @@
 package com.group10.surreystack.models;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author aruns
  */
+@Entity
+@Table(name = "posts")
 public class Post {
-private Long id;
-private String title;
-private String body;
-private User author;
-private Tag tag;
-private Date date = new Date();
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long postID;
+
+    @Column(nullable = false, length = 300)
+    private String title;
+
+    @Lob
+    @Column(nullable = false)
+    private String body;
+
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private User author;
+    
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Tag tag;
+     @OneToMany(mappedBy = "post")
+    private Set<Comment> comments = new HashSet<Comment>();
+    @Column(nullable = false)
+    private Date date = new Date();
+    
     public Post(Long id, String title, String body, User author, Tag tag) {
-        this.id = id;
+        this.postID = id;
         this.title = title;
         this.body = body;
         this.author = author;
@@ -30,8 +59,8 @@ private Date date = new Date();
     public Post() {
     }
 
-    public Long getId() {
-        return id;
+    public Long getPostID() {
+        return postID;
     }
 
     public String getTitle() {
@@ -45,8 +74,8 @@ private Date date = new Date();
     public User getAuthor() {
         return author;
     }
-    
-    public Long getUserId(){
+
+    public Long getUserId() {
         return this.author.getId();
     }
 
@@ -58,8 +87,8 @@ private Date date = new Date();
         return date;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setPostID(Long postID) {
+        this.postID = postID;
     }
 
     public void setTitle(String title) {
@@ -84,7 +113,7 @@ private Date date = new Date();
 
     @Override
     public String toString() {
-        return "Post{" + "id=" + id + ", title=" + title + ", body=" + body + ", author=" + author + ", tag=" + tag + ", date=" + date + '}';
+        return "Post{" + "id=" + postID + ", title=" + title + ", body=" + body + ", author=" + author + ", tag=" + tag + ", date=" + date + '}';
     }
-    
+
 }
