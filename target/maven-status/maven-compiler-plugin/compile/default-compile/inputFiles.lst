@@ -1,6 +1,7 @@
 /Users/liamkenny/Documents/University/Year 3/Web Technologies/Coursework/SurreyStack/SurreyStack/src/main/java/com/group10/surreystack/controllers/PostsController.java
 /Users/liamkenny/Documents/University/Year 3/Web Technologies/Coursework/SurreyStack/SurreyStack/src/main/java/com/group10/surreystack/services/ProfileService.java
 /Users/liamkenny/Documents/University/Year 3/Web Technologies/Coursework/SurreyStack/SurreyStack/src/main/java/com/group10/surreystack/forms/CreatePostForm.java
+/Users/liamkenny/Documents/University/Year 3/Web Technologies/Coursework/SurreyStack/SurreyStack/src/main/java/com/group10/surreystack/dao/UserDAOImpl.java
 /Users/liamkenny/Documents/University/Year 3/Web Technologies/Coursework/SurreyStack/SurreyStack/src/main/java/com/group10/surreystack/config/WebConfig.java
 /Users/liamkenny/Documents/University/Year 3/Web Technologies/Coursework/SurreyStack/SurreyStack/src/main/java/com/group10/surreystack/controllers/RegisterController.java
 /Users/liamkenny/Documents/University/Year 3/Web Technologies/Coursework/SurreyStack/SurreyStack/src/main/java/com/group10/surreystack/models/Post.java
@@ -10,6 +11,7 @@
 /Users/liamkenny/Documents/University/Year 3/Web Technologies/Coursework/SurreyStack/SurreyStack/src/main/java/com/group10/surreystack/services/TagService.java
 /Users/liamkenny/Documents/University/Year 3/Web Technologies/Coursework/SurreyStack/SurreyStack/src/main/java/com/group10/surreystack/services/PostServiceStubImpl.java
 /Users/liamkenny/Documents/University/Year 3/Web Technologies/Coursework/SurreyStack/SurreyStack/src/main/java/com/group10/surreystack/services/NotificationServiceImpl.java
+/Users/liamkenny/Documents/University/Year 3/Web Technologies/Coursework/SurreyStack/SurreyStack/src/main/java/com/group10/surreystack/dao/UserDAO.java
 /Users/liamkenny/Documents/University/Year 3/Web Technologies/Coursework/SurreyStack/SurreyStack/src/main/java/com/group10/surreystack/services/CommentServiceStubImpl.java
 /Users/liamkenny/Documents/University/Year 3/Web Technologies/Coursework/SurreyStack/SurreyStack/src/main/java/com/group10/surreystack/services/TagServiceStubImpl.java
 /Users/liamkenny/Documents/University/Year 3/Web Technologies/Coursework/SurreyStack/SurreyStack/src/main/java/com/group10/surreystack/models/Comment.java
