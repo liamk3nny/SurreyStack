@@ -6,6 +6,8 @@
 package com.group10.surreystack.services;
 
 import com.group10.surreystack.models.User;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,22 +18,25 @@ import org.springframework.stereotype.Service;
 public class ProfileServiceStubImpl implements ProfileService{
 
     private User user = new User(5L, "username1", "Ignas Kampas");
+    private User user2 = new User(6L, "username2", "Liam Kenny");
+    private User user3 = new User(7L, "username3", "Arun Subramanium");
     
-    
-    
-    @Override
-    public String getUsername() {
-        return this.user.getUsername();
-    }
-
-    @Override
-    public String getFullName() {
-        return this.user.getFullName();
-    }
+    private List<User> users = new ArrayList<User>(){{
+        add(user);
+        add(user2);
+        add(user3);
+    }};
     
     @Override
-    public Long getUserId(){
-        return this.user.getId();
+    public User findUserById(Long id){
+        User user = null;
+        for(User u: users){
+            if(u.getId().equals(id)){
+                user = new User(id, u.getUsername(), u.getFullName());
+            }
+        }
+        
+        return user;
     }
     
 }

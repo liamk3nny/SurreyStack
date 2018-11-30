@@ -13,9 +13,6 @@ import com.group10.surreystack.models.User;
  */
 public interface ProfileService {
     
-    public Long getUserId();
-    public String getUsername();
-    public String getFullName();
-    
+    public User findUserById(Long id);
     
 }
