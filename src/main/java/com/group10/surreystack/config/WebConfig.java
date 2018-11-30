@@ -5,11 +5,15 @@
  */
 package com.group10.surreystack.config;
 
+import com.group10.surreystack.dao.UserDAO;
+import com.group10.surreystack.dao.UserDAOImpl;
+import javax.activation.DataSource;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -99,6 +103,23 @@ public class WebConfig extends WebMvcConfigurerAdapter{
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("home.html");
+    }
+    
+    
+    @Bean 
+    public DataSource getDataSource(){
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/userdb");
+        dataSource.setUsername("root");
+        dataSource.setPassword("P@ssw0rd");
+        
+        return (DataSource) dataSource;
+    }
+    
+    @Bean
+    public UserDAO getUserDAO(){
+        return new UserDAOImpl(getDataSource());
     }
 
 }
