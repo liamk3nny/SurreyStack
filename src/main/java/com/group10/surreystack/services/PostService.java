@@ -22,6 +22,7 @@ public interface PostService {
 
    // List<Post> findByTag(Tag tag);
 
+    List<Post>findByTag(Long id);
     Post create(Post post);
     Post edit(Post post);
     void deleteById(Long id);

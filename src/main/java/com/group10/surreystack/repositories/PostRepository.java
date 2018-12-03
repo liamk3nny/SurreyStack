@@ -19,10 +19,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-  //  @Query("SELECT p FROM Post p LEFT JOIN FETCH p.author ORDER BY p.date DESC")
-    //  List<Post> findLatest5Posts(Pageable pageable);
-
- //   public List<Post> findByTag();
+    //@Query("SELECT p FROM Post p LEFT JOIN FETCH p.author ORDER BY p.date DESC")
+    //List<Post> findLatest5Posts(Pageable pageable);
+    
+    //@Query("SELECT * FROM Post WHERE tag_id=?")
+    public List<Post> findByTag(Long tagId);
 
 
 

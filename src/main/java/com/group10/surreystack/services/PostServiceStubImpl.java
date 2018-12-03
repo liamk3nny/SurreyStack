@@ -118,5 +118,12 @@ public class PostServiceStubImpl implements PostService {
         throw new RuntimeException("Post not found: " + id);
     }
 
+    @Override
+    public List<Post> findByTag(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+   
+
     
 }

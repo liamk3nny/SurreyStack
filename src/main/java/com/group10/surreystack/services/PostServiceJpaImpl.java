@@ -51,11 +51,11 @@ public class PostServiceJpaImpl implements PostService {
 //        return this.postRepo.findAll();
 //    }
 //
-//    @Override
-//    public List<Post> findByTag(Tag tag) {
-//        return this.postRepo.findByTag();
-//    }
 
+    
+    
+    
+    
     @Override
     public Post findById(Long id) {
         return this.postRepo.getOne(id);
@@ -75,5 +75,13 @@ public class PostServiceJpaImpl implements PostService {
     public void deleteById(Long id) {
         this.postRepo.deleteById(id);
     }
+
+    @Override
+    public List<Post> findByTag(Long tagId) {
+        return this.postRepo.findByTag(tagId);
+    }
+    
+   
+    
 
 }
