@@ -5,9 +5,11 @@
  */
 package com.group10.surreystack.controllers;
 
+import com.group10.surreystack.dao.UserDAO;
 import com.group10.surreystack.forms.LoginForm;
 import com.group10.surreystack.models.Post;
 import com.group10.surreystack.models.Tag;
+import com.group10.surreystack.models.User;
 
 import com.group10.surreystack.services.PostService;
 import com.group10.surreystack.services.TagService;
@@ -25,6 +27,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class HomeController {
+    
+    @Autowired
+    private UserDAO userDAO;
   
     @Autowired
     private PostService postService;
@@ -36,6 +41,9 @@ public class HomeController {
 
     @RequestMapping(value = "/")
     public String defaultURL(Model model) {
+        
+        List<User> users = userDAO.list();
+        model.addAttribute("users", users);
       
                 
         List<Tag> alltags = tagService.findAll();

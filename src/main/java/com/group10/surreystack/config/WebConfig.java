@@ -109,16 +109,17 @@ public class WebConfig extends WebMvcConfigurerAdapter{
     public DataSource getDataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/db_surreystack");
-		dataSource.setUsername("root");
+		dataSource.setUrl("jdbc:mysql://localhost:3306/dbSurreyStack");
+		dataSource.setUsername("admin");
 		dataSource.setPassword("P@ssw0rd");
 		
 		return dataSource;
 	}
 	
-	@Bean
-	public UserDAO getContactDAO() {
-		return new UserDAOImpl(getDataSource());
-	}
+	
+    @Bean
+    public UserDAO getContactDAO() {
+        return new UserDAOImpl(getDataSource());
+    }
 
 }

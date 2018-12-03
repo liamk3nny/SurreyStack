@@ -5,7 +5,9 @@
  */
 package com.group10.surreystack.controllers;
 
+import com.group10.surreystack.dao.UserDAO;
 import com.group10.surreystack.forms.LoginForm;
+import com.group10.surreystack.models.User;
 import com.group10.surreystack.services.NotificationService;
 import com.group10.surreystack.services.UserService;
 
@@ -29,8 +31,12 @@ public class LoginController {
     @Autowired
     private NotificationService notifyService;
     
+    @Autowired
+    private UserDAO userDAO;
+    
     @RequestMapping("/users/login")
     public String login(LoginForm loginForm) {
+        
         return "users/login";
     }
    
