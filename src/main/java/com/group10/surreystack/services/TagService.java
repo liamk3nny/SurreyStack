@@ -17,6 +17,4 @@ public interface TagService {
     List<Tag> findAll();
     Tag findById(Long id);
     Tag create(Tag tag);
-    Tag edit(Tag tag);
-    void deleteById(Long id);
 }

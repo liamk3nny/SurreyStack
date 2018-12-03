@@ -23,25 +23,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class PostsController {
-    @Autowired
-    private PostService postService;
-    
-    @Autowired
-    private CommentService commentService;
+//    @Autowired
+//    private PostService postService;
+//    
+//    @Autowired
+//    private CommentService commentService;
     
 
       
-    @RequestMapping("/posts/view/{id}")
-    public String view(@PathVariable("id") Long id, Model model, CommentForm commentForm) {
-        Post post = postService.findById(id);
-        model.addAttribute("post", post);
-        List<Comment> postComments = commentService.findComments(id);
-        model.addAttribute("postComments", postComments);
-        if (post == null) {
-                return "redirect:/home";
-            }
-        return "posts/view";
-    }
+//    @RequestMapping("/posts/view/{id}")
+//    public String view(@PathVariable("id") Long id, Model model, CommentForm commentForm) {
+//        Post post = postService.findById(id);
+//        model.addAttribute("post", post);
+//        List<Comment> postComments = commentService.findComments(id);
+//        model.addAttribute("postComments", postComments);
+//        if (post == null) {
+//                return "redirect:/home";
+//            }
+//        return "posts/view";
+//    }
     
 //    @RequestMapping(value = "/posts/view/{id}", method = RequestMethod.POST)
 //    public String addComment(@Valid CommentForm commentForm, BindingResult bindingResult) {

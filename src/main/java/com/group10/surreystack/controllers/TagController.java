@@ -22,26 +22,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class TagController {
-    @Autowired
-    private TagService tagService;
-    
-    @Autowired PostService postService;
-    
-   
-      
-    @RequestMapping("/tags/view/{id}")
-    public String view(@PathVariable("id") Long id, Model model) {
-        Tag tag = tagService.findById(id);
-        model.addAttribute("tag", tag);
-        if (tag == null) {
-                return "redirect:/home";
-            }
-        
-        List<Post> posts = postService.findByTag(tag);
-        model.addAttribute("posts", posts);
-        if (posts == null) {
-                return "redirect:/home";
-            }
-        return "tags/view";
-    }
+//    @Autowired
+//    private TagService tagService;
+//    
+//    @Autowired PostService postService;
+//    
+//   
+//      
+//    @RequestMapping("/tags/view/{id}")
+//    public String view(@PathVariable("id") Long id, Model model) {
+//        Tag tag = tagService.findById(id);
+//        model.addAttribute("tag", tag);
+//        if (tag == null) {
+//                return "redirect:/home";
+//            }
+//        
+//      //  List<Post> posts = postService.findByTag(tag);
+//        //model.addAttribute("posts", posts);
+//        //if (posts == null) {
+//          //      return "redirect:/home";
+//           // }
+//        return "tags/view";
+//    }
 }

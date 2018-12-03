@@ -30,6 +30,8 @@ public class Tag {
     @OneToMany(mappedBy = "tag")
     private Set<Post> posts = new HashSet<Post>();
 
+    public  Tag(){}
+    
     public Tag(Long id, String name) {
         this.id = id;
         this.name = name;

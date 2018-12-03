@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
  *
  * @author maddie
  */
-@Service
 public interface CommentService {
     List<Comment> findComments(Long id);
 }

@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  *
@@ -25,47 +26,50 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class HomeController {
+
+    // Constructor based Dependency Injection
+	private PostService postService;
+        private TagService tagService;
+
+	public HomeController() {
+
+	}
+
+	@Autowired
+	public HomeController(PostService postService, TagService tagService) {
+		this.postService = postService;
+                this.tagService = tagService;
+	}
   
-    @Autowired
-    private PostService postService;
-    
-    @Autowired
-    private TagService tagService;
-    
-    
 
-    @RequestMapping(value = "/")
+   // @Autowired
+    //private TagService tagService;
+
+    @RequestMapping(value = "/" ,method = RequestMethod.GET)
     public String defaultURL(Model model) {
-      
-                
-        List<Tag> alltags = tagService.findAll();
-        model.addAttribute("alltags", alltags);
-        
-        
-        List<Post> latest5Posts = postService.findLatest5();
-        model.addAttribute("latest5posts", latest5Posts);
-       
 
-        List<Post> latest3Posts = latest5Posts.stream().limit(3).collect(Collectors.toList());
-        model.addAttribute("latest3posts", latest3Posts);
-        
+      List<Tag> alltags = tagService.findAll();
+      model.addAttribute("alltags", alltags);
+
+      List<Post> latest5Posts = postService.findAll();
+        model.addAttribute("latest5posts", latest5Posts);
+
+      //  List<Post> latest3Posts = latest5Posts.stream().limit(3).collect(Collectors.toList());
+        //model.addAttribute("latest3posts", latest3Posts);
+
         return "home";
     }
-    
-    @RequestMapping(value = "/home")
-    public String index(Model model) {
-        
-        List<Tag> alltags = tagService.findAll();
-        model.addAttribute("alltags", alltags);
 
-        List<Post> latest5Posts = postService.findLatest5();
-        model.addAttribute("latest5posts", latest5Posts);
-       
-
-        List<Post> latest3Posts = latest5Posts.stream().limit(3).collect(Collectors.toList());
-        model.addAttribute("latest3posts", latest3Posts);
-        
-        return "home";
-
-    }
+//    @RequestMapping(value = "/home", method = RequestMethod.GET)
+//    public String index(Model model) {
+//
+//      //  List<Tag> alltags = tagService.findAll();
+//      //  model.addAttribute("alltags", alltags);
+//
+//        List<Post> latest5Posts = postService.findLatest5();
+//        model.addAttribute("latest5posts", latest5Posts);
+//
+//        return "home";
+//
+//    }
 }

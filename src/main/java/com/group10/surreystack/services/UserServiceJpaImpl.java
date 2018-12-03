@@ -5,11 +5,15 @@
  */
 package com.group10.surreystack.services;
 
+import javax.transaction.Transactional;
+import org.springframework.stereotype.Service;
+
 /**
  *
  * @author aruns
  */
-public interface UserService {
-       // boolean authenticate(String username, String password);
-
+@Service
+@Transactional
+public class UserServiceJpaImpl implements UserService{
+    
 }

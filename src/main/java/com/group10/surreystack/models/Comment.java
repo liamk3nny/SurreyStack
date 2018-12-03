@@ -41,6 +41,7 @@ public class Comment {
     @Column(nullable = false)
     private Date date = new Date();
 
+    public Comment(){}
     public Comment(Long id, String body, User author, Long postId) {
         this.id = id;
         this.body = body;

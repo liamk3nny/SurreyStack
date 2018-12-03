@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
  *
  * @author maddi
  */
-@Service
 public class CommentServiceStubImpl implements CommentService{
         
     List<Comment> comments = new ArrayList<Comment>() {{

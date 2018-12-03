@@ -16,13 +16,12 @@ import com.group10.surreystack.models.User;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 /**
  *
  * @author aruns
  */
-@Service
+
 public class PostServiceStubImpl implements PostService {
     
 
@@ -53,13 +52,13 @@ public class PostServiceStubImpl implements PostService {
         return this.posts;
     }
 
-    @Override
-    public List<Post> findLatest5() {
-        return this.posts.stream()
-                .sorted((a, b) -> b.getDate().compareTo(a.getDate()))
-                .limit(5)
-                .collect(Collectors.toList());
-    }
+//    @Override
+//    public List<Post> findLatest5() {
+//        return this.posts.stream()
+//                .sorted((a, b) -> b.getDate().compareTo(a.getDate()))
+//                .limit(5)
+//                .collect(Collectors.toList());
+//    }
 
     @Override
     public Post findById(Long id) {
@@ -69,25 +68,25 @@ public class PostServiceStubImpl implements PostService {
                 .orElse(null);
     }
     
-    @Override
-    public List<Post> findByTag(Tag tag) {
-        
-        return this.posts.stream()
-                .filter(p -> Objects.equals(p.getTag().getId(), tag.getId()))
-                .sorted((a, b) -> b.getDate().compareTo(a.getDate()))
-                .collect(Collectors.toList());
-    }
-    
-    @Override
-    public List<Post> findUserPosts(Long userId){
-        List<Post> userPosts = new ArrayList<Post>();
-        for (Post p : posts){
-            if(p.getUserId().equals(userId)){
-                userPosts.add(p);
-            }
-        }
-        return userPosts;
-    }
+//    @Override
+//    public List<Post> findByTag(Tag tag) {
+//        
+//        return this.posts.stream()
+//                .filter(p -> Objects.equals(p.getTag().getId(), tag.getId()))
+//                .sorted((a, b) -> b.getDate().compareTo(a.getDate()))
+//                .collect(Collectors.toList());
+//    }
+//    
+//    @Override
+//    public List<Post> findUserPosts(Long userId){
+//        List<Post> userPosts = new ArrayList<Post>();
+//        for (Post p : posts){
+//            if(p.getUserId().equals(userId)){
+//                userPosts.add(p);
+//            }
+//        }
+     //   return userPosts;
+    //}
 
     @Override
     public Post create(Post post) {
