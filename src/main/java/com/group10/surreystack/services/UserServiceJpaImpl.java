@@ -5,7 +5,13 @@
  */
 package com.group10.surreystack.services;
 
+import com.group10.surreystack.models.User;
+import com.group10.surreystack.repositories.UserRepository;
 import javax.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,6 +20,29 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Transactional
-public class UserServiceJpaImpl implements UserService{
+public class UserServiceJpaImpl implements UserService, UserDetailsService{
+    
+    private UserRepository userRepository;
+    
+    @Autowired
+    public UserServiceJpaImpl(UserRepository userespository){
+        this.userRepository = userRepository;
+    }
+
+    @Override
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+       
+        User user = findByUsername(username);
+        if(user == null){
+            throw new UsernameNotFoundException(username);
+        }
+        return new UserDetailsImpl(user);
+        
+    }
     
 }

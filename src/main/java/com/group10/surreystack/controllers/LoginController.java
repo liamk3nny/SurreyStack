@@ -22,29 +22,31 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class LoginController {
 
-//    @Autowired
-//    private UserService userService;
-//
-//
-//    
-//    @RequestMapping("/users/login")
-//    public String login(LoginForm loginForm) {
-//        return "users/login";
-//    }
-//   
-//   
-//
-//    @RequestMapping(value = "/users/login", method = RequestMethod.POST)
-//    public String loginPage(@Valid LoginForm loginForm, BindingResult bindingResult) {
-//        if (bindingResult.hasErrors()) {
-//             return "users/login";
-//        }
-//
-////        if (!userService.authenticate(
-////             loginForm.getUsername(), loginForm.getPassword())) {
-////             return "users/login";
-////        }
-//
-//        return "redirect:/home";
-//    }
+    @Autowired
+    private UserService userService;
+
+
+    
+    @RequestMapping("/users/login")
+    public String login(LoginForm loginForm) {
+        return "users/login";
+    }
+   
+   
+
+    @RequestMapping(value = "/users/login", method = RequestMethod.POST)
+    public String loginPage(@Valid LoginForm loginForm, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+             return "users/login";
+        }
+        
+        /*
+        if (!userService.authenticate(
+             loginForm.getUsername(), loginForm.getPassword())) {
+             return "users/login";
+        }
+*/
+
+        return "redirect:/home";
+    }
 }

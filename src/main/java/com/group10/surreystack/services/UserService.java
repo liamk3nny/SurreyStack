@@ -5,11 +5,15 @@
  */
 package com.group10.surreystack.services;
 
+import com.group10.surreystack.models.User;
+
 /**
  *
  * @author aruns
  */
 public interface UserService {
        // boolean authenticate(String username, String password);
+    
+    public User findByUsername(String username);
 
 }

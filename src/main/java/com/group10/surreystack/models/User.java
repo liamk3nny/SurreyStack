@@ -9,9 +9,12 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -40,11 +43,12 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private Set<Comment> comments = new HashSet<Comment>();
+    
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name="role_id")
+    private Role role;
 
-    @Override
-    public String toString() {
-        return "User{" + "id=" + user_id + ", username=" + username + ", passwordHash=" + password + ", fullName=" + fullName + '}';
-    }
+    
 
     public User() {
     }
@@ -53,6 +57,15 @@ public class User {
         this.user_id = user_id;
         this.username = username;
         this.fullName = fullName;
+        
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public void setUser_id(Long user_id) {
