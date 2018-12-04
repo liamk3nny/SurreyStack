@@ -25,6 +25,6 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     //@Query("SELECT * FROM Post WHERE tag_id=?")
     public List<Post> findByTag(Long tagId);
 
-
+    
 
 }
