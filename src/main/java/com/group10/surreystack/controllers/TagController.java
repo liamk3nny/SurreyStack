@@ -10,11 +10,13 @@ import com.group10.surreystack.models.Tag;
 import com.group10.surreystack.services.PostService;
 import com.group10.surreystack.services.TagService;
 import java.util.List;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  *
@@ -22,26 +24,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class TagController {
-//    @Autowired
-//    private TagService tagService;
-//    
-//    @Autowired PostService postService;
-//    
-//   
-//      
-//    @RequestMapping("/tags/view/{id}")
-//    public String view(@PathVariable("id") Long id, Model model) {
-//        Tag tag = tagService.findById(id);
-//        model.addAttribute("tag", tag);
-//        if (tag == null) {
-//                return "redirect:/home";
-//            }
-//        
-//      //  List<Post> posts = postService.findByTag(tag);
-//        //model.addAttribute("posts", posts);
-//        //if (posts == null) {
-//          //      return "redirect:/home";
-//           // }
-//        return "tags/view";
-//    }
+
+    TagService tagService;
+
+    public TagController() {
+
+    }
+
+    @Autowired
+    public TagController(PostService postService, TagService tagService) {
+        this.tagService = tagService;
+    }
+
+    @RequestMapping(value= "/tags/view/{id}", method= RequestMethod.GET)
+    public String view(@PathVariable("id") Long id, Model model) {
+        Tag tag = tagService.findById(id);
+        model.addAttribute("tag", tag);
+        Set<Post> post = tag.getPosts();
+        model.addAttribute("post", post);
+        if (post == null) {
+            return "redirect:/home";
+        }
+        return "tags/view";
+    }
 }

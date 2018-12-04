@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Transactional
-public class CommentServiceJpaImpl {
+public class CommentServiceJpaImpl implements CommentService {
     
     private CommentRepository commentRepo;
 
@@ -34,8 +34,13 @@ public class CommentServiceJpaImpl {
     }
     
 //    @Override
-//    public    List<Comment> findComments(Long id){
-//        return this.commentRepo.findComments();
+//    public List<Comment> findByPost_ID(Long post_id){
+//        return this.commentRepo.
 //    };
+    
+    @Override
+    public Comment create(Comment comment) {
+        return this.commentRepo.save(comment);
+    }
 
 }

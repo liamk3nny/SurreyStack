@@ -14,6 +14,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -29,7 +30,7 @@ public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long postID;
+    private Long post_id;
 
     @Column(nullable = false, length = 300)
     private String title;
@@ -39,28 +40,33 @@ public class Post {
     private String body;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private User author;
+    @JoinColumn(name="user_id")
+    private User user;
     
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name="tag_id")
     private Tag tag;
-     @OneToMany(mappedBy = "post")
+         
+    @OneToMany(mappedBy = "post")
     private Set<Comment> comments = new HashSet<Comment>();
+    
     @Column(nullable = false)
     private Date date = new Date();
     
-    public Post(Long id, String title, String body, User author, Tag tag) {
-        this.postID = id;
+    public Post(){}
+    
+    
+    public Post(Long post_id, String title, String body, User user, Tag tag) {
+        this.post_id = post_id;
         this.title = title;
         this.body = body;
-        this.author = author;
+        this.user = user;
         this.tag = tag;
     }
 
-    public Post() {
-    }
 
-    public Long getPostID() {
-        return postID;
+      public Long getPost_id() {
+        return post_id;
     }
 
     public String getTitle() {
@@ -71,12 +77,12 @@ public class Post {
         return body;
     }
 
-    public User getAuthor() {
-        return author;
+    public User getUser() {
+        return user;
     }
 
     public Long getUserId() {
-        return this.author.getId();
+        return this.user.getUser_id();
     }
 
     public Tag getTag() {
@@ -87,8 +93,13 @@ public class Post {
         return date;
     }
 
-    public void setPostID(Long postID) {
-        this.postID = postID;
+    public Set<Comment> getComments() {
+        return comments;
+    }
+    
+
+    public void setPostId(Long post_id) {
+        this.post_id = post_id;
     }
 
     public void setTitle(String title) {
@@ -99,8 +110,8 @@ public class Post {
         this.body = body;
     }
 
-    public void setAuthor(User author) {
-        this.author = author;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public void setTag(Tag tag) {
@@ -113,7 +124,7 @@ public class Post {
 
     @Override
     public String toString() {
-        return "Post{" + "id=" + postID + ", title=" + title + ", body=" + body + ", author=" + author + ", tag=" + tag + ", date=" + date + '}';
+        return "Post{" + "id=" + post_id + ", title=" + title + ", body=" + body + ", user=" + user + ", tag=" + tag + ", date=" + date + '}';
     }
 
 }

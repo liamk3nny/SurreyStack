@@ -31,7 +31,7 @@ public class ProfileServiceStubImpl implements ProfileService{
     
     @Override
     public Long getUserId(){
-        return this.user.getId();
+        return this.user.getUser_id();
     }
     
 }

@@ -12,6 +12,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -25,72 +26,59 @@ public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long comment_id;
 
     @Column(nullable = false)
     private String body;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private User author;
+    @JoinColumn(name="user_id")
+    private User user;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name="post_id")
     private Post post;
 
-    private Long postId;
-    
     @Column(nullable = false)
     private Date date = new Date();
 
     public Comment(){}
-    public Comment(Long id, String body, User author, Long postId) {
-        this.id = id;
+    
+    public Comment(Long comment_id, String body, User user, Post post) {
+        this.comment_id = comment_id;
         this.body = body;
-        this.author = author;
-        this.postId = postId;
-    }
-
-    public Comment(Long id, String body, User author, Post post) {
-        this.id = id;
-        this.body = body;
-        this.author = author;
+        this.user = user;
         this.post = post;
     }
 
-    public Long getId() {
-        return id;
+    public Long getComment_id() {
+        return comment_id;
     }
 
     public String getBody() {
         return body;
     }
 
-    public User getAuthor() {
-        return author;
-    }
-
-    public Long getPostId() {
-        return postId;
+    public User getUser() {
+        return user;
     }
 
     public Date getDate() {
         return date;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setComment_id(Long comment_id) {
+        this.comment_id = comment_id;
     }
 
     public void setBody(String body) {
         this.body = body;
     }
 
-    public void setAuthor(User author) {
-        this.author = author;
+    public void setUser(User user) {
+        this.user = user;
     }
-
-    public void setPost(Long postId) {
-        this.postId = postId;
-    }
+  
 
     public void setDate(Date date) {
         this.date = date;

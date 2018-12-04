@@ -25,62 +25,62 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long user_id;
     @Column(nullable = false, length = 30, unique = true)
     private String username;
 
     @Column(length = 60)
-    private String passwordHash;
+    private String password;
 
     @Column(length = 100)
     private String fullName;
 
-    @OneToMany(mappedBy = "author")
+    @OneToMany(mappedBy = "user")
     private Set<Post> posts = new HashSet<Post>();
 
-    @OneToMany(mappedBy = "author")
+    @OneToMany(mappedBy = "user")
     private Set<Comment> comments = new HashSet<Comment>();
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", username=" + username + ", passwordHash=" + passwordHash + ", fullName=" + fullName + '}';
+        return "User{" + "id=" + user_id + ", username=" + username + ", passwordHash=" + password + ", fullName=" + fullName + '}';
     }
 
     public User() {
     }
 
-    public User(Long id, String username, String fullName) {
-        this.id = id;
+    public User(Long user_id, String username, String fullName) {
+        this.user_id = user_id;
         this.username = username;
         this.fullName = fullName;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUser_id(Long user_id) {
+        this.user_id = user_id;
     }
 
     public void setUsername(String username) {
         this.username = username;
     }
 
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }
 
-    public Long getId() {
-        return id;
+    public Long getUser_id() {
+        return user_id;
     }
 
     public String getUsername() {
         return username;
     }
 
-    public String getPasswordHash() {
-        return passwordHash;
+    public String getPassword() {
+        return password;
     }
 
     public String getFullName() {

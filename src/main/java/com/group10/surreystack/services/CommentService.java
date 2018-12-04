@@ -15,5 +15,6 @@ import org.springframework.stereotype.Service;
  * @author maddie
  */
 public interface CommentService {
-    List<Comment> findComments(Long id);
+   // List<Comment> findByPost_ID($Parameter(name="id")Long post_id);
+    Comment create(Comment comment);
 }

@@ -17,21 +17,21 @@ import org.springframework.stereotype.Service;
  *
  * @author maddi
  */
-public class CommentServiceStubImpl implements CommentService{
+//public class CommentServiceStubImpl implements CommentService{
         
-    List<Comment> comments = new ArrayList<Comment>() {{
-        add(new Comment(1L, "This is a comment", new User(20L, "madfro", "Maddie Frost"), 1L));
-        add(new Comment(2L, "This is another comment", new User(20L, "madfro", "Maddie Frost"), 1L));
-    }};
-    
-    @Override
-    public List<Comment> findComments(Long id) {
-        List<Comment> postComments = new ArrayList<Comment>();
-        for (Comment c : comments) {
-            if(c.getPostId().equals(id)) {
-                postComments.add(c);
-            }
-        }
-        return postComments;
-    }
-}
+//    List<Comment> comments = new ArrayList<Comment>() {{
+//        add(new Comment(1L, "This is a comment", new User(20L, "madfro", "Maddie Frost"), 1L));
+//        add(new Comment(2L, "This is another comment", new User(20L, "madfro", "Maddie Frost"), 1L));
+//    }};
+//    
+//    @Override
+//    public List<Comment> findComments(Long id) {
+//        List<Comment> postComments = new ArrayList<Comment>();
+//        for (Comment c : comments) {
+//            if(c.getPostId().equals(id)) {
+//                postComments.add(c);
+//            }
+//        }
+//        return postComments;
+//    }
+//}

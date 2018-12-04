@@ -51,10 +51,10 @@ public class PostServiceJpaImpl implements PostService {
 //        return this.postRepo.findAll();
 //    }
 //
-//    @Override
-//    public List<Post> findByTag(Tag tag) {
-//        return this.postRepo.findByTag();
-//    }
+  //  @Override
+    //public List<Post> findPostsByTag(Long tag_id) {
+      //  return this.postRepo.findByTag(tag_id);
+    //}
 
     @Override
     public Post findById(Long id) {

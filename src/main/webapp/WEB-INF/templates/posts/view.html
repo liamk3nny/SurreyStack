@@ -15,10 +15,10 @@
                 <div class="date">
                     <i>Posted on</i>
                     <span th:text="${#dates.format(p.date, 'dd-MMM-yyyy')}"></span>
-                    <span th:if="${p.author}" th:remove="tag">
+                    <span th:if="${p.user}" th:remove="tag">
                         <i>by</i>
-                        <span th:text="${p.author.fullName != null ?
-                              p.author.fullName : p.author.username}"></span>
+                        <span th:text="${p.user.fullName != null ?
+                              p.user.fullName : p.user.username}"></span>
                     </span>
                     <i>Tagged</i>
                     <span th:text="${p.tag.name}"></span>
@@ -28,7 +28,7 @@
             
             <h3>Comments:</h3>
             <article th:each="c : ${postComments}">
-                <span style="font-weight: bold;" th:text="${c.author.getUsername()}"></span>
+                <span style="font-weight: bold;" th:text="${c.user.getUsername()}"></span>
                 <span th:text="${c.body}"></span>
                 <p class="content" th:text="${#dates.format(c.date, 'dd-MMM-yyyy')}"></p>
             </article>

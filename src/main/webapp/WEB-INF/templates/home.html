@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
     <head th:replace="layout :: site-head">
         <title>Welcome to Surrey Stack</title>
@@ -12,19 +12,19 @@
 
         <aside>
             <h2>Tags</h2>
-            <a href="#" th:each="p : ${alltags}" th:text="${p.name}" th:href="@{/tags/view/{id}/(id=${p.id})}"></a>
+            <a href="#" th:each="p : ${alltags}" th:text="${p.name}" th:href="@{/tags/view/{id}/(id=${p.tag_id})}"></a>
         </aside>
 
         <main id="posts">
             <article th:each="p : ${latest5posts}">
-                <h2 class="title" th:text="${p.title}">Post Title</h2>
+                <h2><a href="#" class="title" th:text="${p.title}" th:href="@{/posts/view/{id}/(id=${p.post_id})}">Post Title</a></h2>
                 <div class="date">
                     <i>Posted on</i>
                     <span th:text="${#dates.format(p.date, 'dd-MMM-yyyy')}"></span>
-                    <span th:if="${p.author}" th:remove="tag">
+                    <span th:if="${p.user}" th:remove="tag">
                         <i>by</i>
-                        <span th:text="${p.author.fullName != null ?
-                              p.author.fullName : p.author.username}"></span>
+                        <span th:text="${p.user.fullName != null ?
+                              p.user.fullName : p.user.username}"></span>
                     </span>
                     <i>Tagged</i>
                     <span th:text="${p.tag.name}"></span>

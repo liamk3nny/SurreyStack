@@ -39,15 +39,15 @@ public class TagServiceStubImpl implements TagService{
     @Override
     public Tag findById(Long id) {
         return this.tags.stream()
-                .filter(p -> Objects.equals(p.getId(), id))
+                .filter(p -> Objects.equals(p.getTag_id(), id))
                 .findFirst()
                 .orElse(null);
     }
 
     @Override
     public Tag create(Tag tag) {
-        tag.setId(this.tags.stream().mapToLong(
-                p -> p.getId()).max().getAsLong() + 1);
+        tag.setTag_id(this.tags.stream().mapToLong(
+                p -> p.getTag_id()).max().getAsLong() + 1);
         this.tags.add(tag);
         return tag;
     }
