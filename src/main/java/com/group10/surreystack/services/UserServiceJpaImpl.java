@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 @Transactional
 public class UserServiceJpaImpl implements UserService, UserDetailsService{
     
+    @Autowired
     private UserRepository userRepository;
     
     @Autowired

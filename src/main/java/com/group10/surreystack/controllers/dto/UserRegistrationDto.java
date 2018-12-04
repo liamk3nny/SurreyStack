@@ -3,16 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.group10.surreystack.services;
-
-import com.group10.surreystack.models.User;
+package com.group10.surreystack.controllers.dto;
 
 /**
  *
- * @author aruns
+ * @author liamkenny
  */
-public interface UserService {
+public class UserRegistrationDto {
     
-    public User findByUsername(String username);
-
+    //@NotEmpty
+    //private String 
+    
 }
