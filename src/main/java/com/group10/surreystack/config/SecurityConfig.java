@@ -22,27 +22,30 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
     
-    //@Autowired
-    //private UserDetailsService userService;
-    
-    /*
     @Autowired
-    public void configureAuth(AuthenticationManagerBuilder auth) throws Exception{
+    private UserDetailsService userService;
+    
+    
+    @Override
+    public void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth.userDetailsService(userService);
     }
-    */
-    @Autowired
-    public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception{
-        auth.inMemoryAuthentication().withUser("liam").password("abc").roles("USER");
-        auth.inMemoryAuthentication().withUser("ignas").password("abc").roles("ADMIN");
-    }
+    
+    
+//    @Autowired
+//    public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception{
+//        auth.inMemoryAuthentication().withUser("liam").password("abc").roles("USER");
+//        auth.inMemoryAuthentication().withUser("ignas").password("abc").roles("ADMIN");
+//    }
     
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http.authorizeRequests()
                 .antMatchers("/users/register").permitAll()
-                .antMatchers("/").access("hasRole('USER')")
-                .and().formLogin().loginPage("/users/login").permitAll()
+                .antMatchers("/").permitAll()
+                //.antMatchers("/").access("hasRole('USER')")
+                //.and().formLogin().loginPage("/users/login").permitAll()
+                .and().formLogin()
                 .and().exceptionHandling().accessDeniedPage("/Access_Denied");
         
         /*
