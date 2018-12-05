@@ -63,12 +63,17 @@ public class HomeController {
         return "home";
     }
     
+    @RequestMapping(value = "/access_denied" ,method = RequestMethod.GET)
+    public String accessDenied(Model model) {
+        return "access_denied";
+    }
+    
     private String getPrincipal(){
         String userName = null;
         String principal = SecurityContextHolder.getContext().getAuthentication().getName();
+        String principal2 = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
         
-        
-        return principal;
+        return principal + " - " + principal2;
     }
 
 

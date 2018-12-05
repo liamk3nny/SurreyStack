@@ -42,11 +42,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception{
         http.authorizeRequests()
                 .antMatchers("/users/register").permitAll()
-                //.antMatchers("/").permitAll()
-                .antMatchers("/**").access("hasRole('USER')")
+                .antMatchers("/", "/posts/**", "/tags/**", "/users/profile").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+                .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
                 .and().formLogin().loginPage("/users/login").permitAll()
-                //.and().formLogin()
-                .and().exceptionHandling().accessDeniedPage("/Access_Denied");
+                .and().exceptionHandling().accessDeniedPage("/access_denied");
         
         /*
         http.authorizeRequests()
