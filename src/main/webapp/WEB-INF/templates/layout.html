@@ -21,7 +21,7 @@
             <a href="users/profile.html" th:href="@{/users/profile}">Users</a>
 
             <div id="logged-in-info"> <span>Hello, <b><span th:text="${principal}"></span></b></span>
-                <form method="post" th:action="@{/users/logout}">
+                <form th:action="@{/app-logout}" method="post" >
                     <input type="submit" value="Logout"/>
                 </form>
             </div>   
