@@ -31,12 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         auth.userDetailsService(userService);
     }
     
-    
-//    @Autowired
-//    public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception{
-//        auth.inMemoryAuthentication().withUser("liam").password("abc").roles("USER");
-//        auth.inMemoryAuthentication().withUser("ignas").password("abc").roles("ADMIN");
-//    }
+   
     
     @Override
     protected void configure(HttpSecurity http) throws Exception{
@@ -46,27 +41,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
                 .and().formLogin().loginPage("/users/login").permitAll()
                 .and().exceptionHandling().accessDeniedPage("/access_denied");
-        
-        /*
-        http.authorizeRequests()
-                .antMatchers("/").access("hasRole('ADMIN')")
-                .and().formLogin().loginPage("/users/login").permitAll()
-                .and().exceptionHandling().accessDeniedPage("/Access_Denied");
-        */
-        /*
-        http.authorizeRequests()
-                //.antMatchers("/").hasRole("2").anyRequest().authenticated()
-                .antMatchers("/", "/posts/**", "/tags/**", "/users/profile").hasRole("ADMIN")
-                .antMatchers("/users/register").permitAll()
-                .and().formLogin().loginPage("/users/login").permitAll();
-                
-        /*
-        
-        http.authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN").anyRequest().authenticated()
-                .and()
-                .formLogin().loginPage("/users/login").permitAll()
-                .and()
-                .logout().logoutSuccessUrl("/users/login?logout").permitAll();
-        */
+       
     }
 }

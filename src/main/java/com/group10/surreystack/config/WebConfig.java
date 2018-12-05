@@ -59,7 +59,7 @@ public class WebConfig implements WebMvcConfigurer{
     
 
     
-       @Bean
+    @Bean
     public SpringResourceTemplateResolver templateResolver(){
         // SpringResourceTemplateResolver automatically integrates with Spring's own
         // resource resolution infrastructure, which is highly recommended.

@@ -42,13 +42,6 @@ public class LoginController {
         if (bindingResult.hasErrors()) {
              return "users/login";
         }
-        
-        /*
-        if (!userService.authenticate(
-             loginForm.getUsername(), loginForm.getPassword())) {
-             return "users/login";
-        }
-*/
 
         return "redirect:/home";
     }
