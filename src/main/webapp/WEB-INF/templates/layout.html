@@ -20,11 +20,19 @@
             <a href="posts/create.html" th:href="@{/posts/create}">Create Post</a>
             <a href="users/profile.html" th:href="@{/users/profile}">Users</a>
 
-            <div id="logged-in-info"> <span>Hello, <b>(user)</b></span>
+            <div id="logged-in-info"> <span>Hello, <b><span th:text="${principal}"></span></b></span>
                 <form method="post" th:action="@{/users/logout}">
                     <input type="submit" value="Logout"/>
                 </form>
             </div>   
+        </header>
+        
+        <header th:fragment="login-header">
+            <a href="users/login.html" th:href="@{/users/login}"><img src="../../img/site-logo.png" th:src="@{/img/site-logo.png}" alt="whoops" style="width:40px;height:40px;"/> </a>
+        </header>
+        
+        <header th:fragment="register-header">
+            <a href="users/register.html" th:href="@{/users/register}"><img src="../../img/site-logo.png" th:src="@{/img/site-logo.png}" alt="whoops" style="width:40px;height:40px;"/> </a>
         </header>
         <footer th:fragment="site-footer">
             &copy;  Surrey Stack, 2018
