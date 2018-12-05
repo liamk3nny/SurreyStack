@@ -7,14 +7,14 @@
 
     <body>
 
-        <header th:replace="layout :: site-header" />
+        <header th:include="layout :: site-header" />
+
         <div class="row">
             <div class="rightcolumn">
                 <div class="card">
                     <h2>Tags</h2>
                     <article th:each="p : ${alltags}">
-                        <!--<a href="#" th:text="${p.name}" th:href="@{/tags/view/{id}/(id=${p.tag_id})}" onclick="loadPosts()"></a>-->
-                        <a href="#" th:text="${p.name}" onclick="loadPosts()"></a>
+                        <a href="#" th:text="${p.name}" th:href="@{/tags/view/{id}/(id=${p.tag_id})}"></a>
                     </article>
                 </div>
             </div>
