@@ -36,8 +36,10 @@ public class TagController {
         this.tagService = tagService;
     }
 
-    @RequestMapping(value= "/tags/view/{id}", method= RequestMethod.GET)
+    @RequestMapping(value = "/tags/view/{id}", method = RequestMethod.GET)
     public String view(@PathVariable("id") Long id, Model model) {
+        List<Tag> alltags = tagService.findAll();
+        model.addAttribute("alltags", alltags);
         Tag tag = tagService.findById(id);
         model.addAttribute("tag", tag);
         Set<Post> post = tag.getPosts();

@@ -7,30 +7,40 @@
 
     <body>
 
-        <header th:replace="layout :: site-header" />
+        <header th:include="layout :: site-header" />
 
+        <div class="row">
+            <div class="rightcolumn">
+                <div class="card">
+                    <h2>Tags</h2>
+                    <article th:each="p : ${alltags}">
+                        <a href="#" th:text="${p.name}" th:href="@{/tags/view/{id}/(id=${p.tag_id})}"></a>
+                    </article>
+                </div>
+            </div>
 
-        <div class="leftcolumn">
-            <main id="posts">
-                <article th:each="p : ${latest5posts}">
-                    <div class="card">
-                        <h2><a href="#" class="title" th:text="${p.title}" th:href="@{/posts/view/{id}/(id=${p.post_id})}">Post Title</a></h2>
-                        <div class="date">
-                            <i>Posted on</i>
-                            <span th:text="${#dates.format(p.date, 'dd-MMM-yyyy')}"></span>
-                            <span th:if="${p.user}" th:remove="tag">
-                                <i>by</i>
-                                <span th:text="${p.user.fullName != null ?
-                                      p.user.fullName : p.user.username}"></span>
-                            </span>
-                            <i>Tagged</i>
-                            <span th:text="${p.tag.name}"></span>
+            <div class="leftcolumn">
+                <main id="posts">
+                    <article th:each="p : ${latest5posts}">
+                        <div class="card">
+                            <h2><a href="#" class="title" th:text="${p.title}" th:href="@{/posts/view/{id}/(id=${p.post_id})}">Post Title</a></h2>
+                            <div class="date">
+                                <i>Posted on</i>
+                                <span th:text="${#dates.format(p.date, 'dd-MMM-yyyy')}"></span>
+                                <span th:if="${p.user}" th:remove="tag">
+                                    <i>by</i>
+                                    <span th:text="${p.user.fullName != null ?
+                                          p.user.fullName : p.user.username}"></span>
+                                </span>
+                                <i>Tagged</i>
+                                <span th:text="${p.tag.name}"></span>
+                            </div>
+                            <p class="content" th:utext="${p.body}">Post content</p>
                         </div>
                         <p class="content" th:utext="${p.body}">Post content</p>
-                    </div>
-                </article>
-            </main>
-        </div>
+                    </article>
+                </main>
+            </div>
         </div>
 
         <div class="footer">

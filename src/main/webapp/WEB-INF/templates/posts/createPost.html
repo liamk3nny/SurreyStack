@@ -5,21 +5,51 @@
         <title th:text="${post.title}">Create Post</title>        
     </head>
     <body>
-        <header th:replace="layout :: site-header" />
-        <h2>Ask a question:</h2>
-        <form method="post">
-            <div><label for="post">Title</label></div>
-            <input id="postTitle" type="text" name="postTitle" th:value="*{postTitle}" placeholder="Whats your question?"/>
-            
-            <div><label for="post">Body</label></div>
-            <input id="postBody" type="text" name="postBody" th:value="*{postBody}"/>
-            
-            <div><label for="post">Select your tag</label></div>    
+        <header th:include="layout :: site-header" />
 
-            <div><input type="submit" value="Submit"/></div>
-        </form>
 
-        <footer th:replace="layout :: site-footer" />
+        <div class="row">
+            <div class="rightcolumn">
+                <div class="card">
+                    <h2>Tags</h2>
+                    <article th:each="p : ${alltags}">
+                        <a href="#" th:text="${p.name}" th:href="@{/tags/view/{id}/(id=${p.tag_id})}"></a>
+                    </article>
+                </div>
+            </div>
+            <div class="leftcolumn">
+                <div class="card">
+                    <h2>Ask a question:</h2>
+                    <form method="post">
+                        <div><label for="post">Title</label></div>
+                        <input id="postTitle" type="text" name="postTitle" th:value="*{postTitle}" placeholder="What's your question?"/>
+
+                        <div><label for="post">Body</label></div>
+                        <input id="postBody" type="text" name="postBody" th:value="*{postBody}"/>
+
+                        <div><label for="post">Select your tag</label></div> 
+                        <select size="5">
+                            <article th:each="p : ${alltags}">
+                                <option th:value="${p.name}" th:text="${p.name}"></option>
+                            </article>
+                        </select>
+                        <div><input type="submit" value="Submit"/></div>
+                    </form>
+
+
+                    <h2>Create a tag:</h2>
+                    <form method="post" th:object="${tagForm}">
+                        <div><label for="tagName">Tag Name:</label></div>
+                        <input id="tagName" type="text" name="tagName" th:value="tagName"/>
+                        <div><input type="submit" value="Create"/></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <footer th:replace="layout :: site-footer" />
+        </div>
 
     </body>
 </html>

@@ -8,7 +8,10 @@ and open the template in the editor.
     Author     : aruns
 */
 
-
+body>header {
+    background: #eee;
+    padding: 5px;
+}
 
 body>header>a>img, body>header a {
     display: inline-block;
