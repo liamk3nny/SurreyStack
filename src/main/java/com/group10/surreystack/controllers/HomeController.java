@@ -15,6 +15,7 @@ import com.group10.surreystack.services.TagService;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,6 +49,8 @@ public class HomeController {
 
       List<Tag> alltags = tagService.findAll();
       model.addAttribute("alltags", alltags);
+      
+      model.addAttribute("principal", getPrincipal());
 
       List<Post> latest5Posts = postService.findAll();
       //  model.addAttribute("latest5posts", latest5Posts);
@@ -58,6 +61,14 @@ public class HomeController {
         //model.addAttribute("latest3posts", latest3Posts);
 
         return "home";
+    }
+    
+    private String getPrincipal(){
+        String userName = null;
+        String principal = SecurityContextHolder.getContext().getAuthentication().getName();
+        
+        
+        return principal;
     }
 
 

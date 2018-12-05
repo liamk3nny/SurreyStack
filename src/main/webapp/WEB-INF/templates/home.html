@@ -16,6 +16,9 @@
         </aside>
 
         <main id="posts">
+            
+            
+            <span th:text="${principal}"></span>
             <article th:each="p : ${latest5posts}">
                 <h2><a href="#" class="title" th:text="${p.title}" th:href="@{/posts/view/{id}/(id=${p.post_id})}">Post Title</a></h2>
                 <div class="date">
