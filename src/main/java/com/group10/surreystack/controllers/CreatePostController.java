@@ -5,10 +5,22 @@
  */
 package com.group10.surreystack.controllers;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 /**
  *
- * @author maddi
+ * @author maddie
  */
+@Controller
 public class CreatePostController {
+    
+    @RequestMapping(value="/posts/create", method=RequestMethod.GET)
+    public String createPost(){
+        return "posts/createPost";
+    }
+    
+    
     
 }

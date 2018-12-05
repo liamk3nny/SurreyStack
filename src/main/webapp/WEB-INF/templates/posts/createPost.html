@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+    <head th:replace="layout :: site-head">
+        <title th:text="${post.title}">Create Post</title>        
+    </head>
+    <body>
+        <header th:replace="layout :: site-header" />
+        <h2>Ask a question:</h2>
+        <form method="post">
+            <div><label for="post">Title</label></div>
+            <input id="postTitle" type="text" name="postTitle" th:value="*{postTitle}" placeholder="Whats your question?"/>
+            
+            <div><label for="post">Body</label></div>
+            <input id="postBody" type="text" name="postBody" th:value="*{postBody}"/>
+            
+            <div><label for="post">Select your tag</label></div>    
+
+            <div><input type="submit" value="Submit"/></div>
+        </form>
+
+        <footer th:replace="layout :: site-footer" />
+
+    </body>
+</html>
