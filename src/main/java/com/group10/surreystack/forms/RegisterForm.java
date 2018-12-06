@@ -30,20 +30,7 @@ public class RegisterForm {
     @NotNull
     @Size(min=5, max=50)
     private String name;
-    
-    public RegisterForm(){
-        System.out.println("made it to the register form!");
-        if(name == null ){
-            System.out.println("name: null");
-            System.out.println("username: null");
-            System.out.println("password: null" + "\n");
-        }else{
-            System.out.println("name: "+ name);
-            System.out.println("username: "+ username);
-            System.out.println("password: "+ password + "\n");
-        }
-        
-    }
+   
 
     
     public String getName() {

@@ -19,30 +19,29 @@
                 You have successfully registered.
             </div>
             
-            
-            <div>
-                <label for="username">Username:</label>
-                <input id="username" type="text" th:field="*{username}" />
-                <span class="formError" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Invalid username</span>
-            </div>
-            
-            <div>
-                <label for="password">Password:</label>
-                <input id="password" type="password" th:field="*{password}" />
-                <span class="formError" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Invalid password</span>
-            </div>
-            
-            <div>
-                <label for="name">Name:</label>
-                <input id="name" type="text" th:field="*{name}" />
-                <span class="formError" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Invalid name</span>
-            </div>
-            
-           
-           <div>
-               <input type="submit" value="Signup"/>
-               <a href="login.html" th:href="@{/users/login}">Go back to login</a>
-           </div>
+            <table>
+                <tr>
+                    <td><label for="username">Username:</label></td>
+                    <td><input id="username" type="text" th:field="*{username}" /></td>
+                    <td><span class="formError" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Invalid username</span></td>
+                </tr>
+                <tr>
+                    <td><label for="password">Password:</label></td>
+                    <td><input id="password" type="password" th:field="*{password}" /></td>
+                    <td><span class="formError" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Invalid password</span></td>
+                </tr>
+                <tr>
+                    <td><label for="name">Name:</label></td>
+                    <td><input id="name" type="text" th:field="*{name}" /></td>
+                    <td><span class="formError" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Invalid name</span></td>
+                </tr>
+                <tr>
+                    
+                    <td><input type="submit" value="Signup"/></td>
+                    <td><a href="login.html" th:href="@{/users/login}">Go back to login</a></td>
+                </tr>
+                
+            </table>
         </form>
         
        
