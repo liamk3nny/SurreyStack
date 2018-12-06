@@ -16,14 +16,14 @@ public class CommentForm {
     
     @NotNull
     @Size(min=1, max=50)
-    private String comment;
+    private String commentBody;
 
-    public String getComment() {
-        return comment;
+    public String getCommentBody() {
+        return commentBody;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setCommentBody(String commentBody) {
+        this.commentBody = commentBody;
     }
     
     

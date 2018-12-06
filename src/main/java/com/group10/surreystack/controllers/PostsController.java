@@ -18,6 +18,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -55,5 +56,21 @@ public class PostsController {
             return "redirect:/home";
         }
         return "posts/view";
+    }
+    
+    @RequestMapping(value = "/posts/view/{id}", method = RequestMethod.POST)
+    public String postComment(@Valid CommentForm commentForm, BindingResult bindingResult, Model model) {
+        List<Tag> alltags = tagService.findAll();
+        model.addAttribute("alltags", alltags);
+        if (bindingResult.hasErrors()) {
+             return "/posts/view/{id}";
+        }
+        
+        Comment c = new Comment();
+        //t.setName(tagForm.getTagName());
+        
+        //tagService.create(t);
+        
+        return "/posts/view/{id}";
     }
 }
