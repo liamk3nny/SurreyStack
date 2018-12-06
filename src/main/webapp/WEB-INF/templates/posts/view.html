@@ -50,7 +50,7 @@
 
                         <form method="post" th:object="${commentForm}">
                             <div><label for="commentBody">Leave a comment:</label></div>
-                            <input id="commentBody" type="text" name="commentBody" th:value="commentBody"/>
+                            <input id="commentBody" type="text" name="commentBody" th:value="${commentBody}"/>
                             <div><input type="submit" value="Submit"/></div>
                         </form>
                     </div>

@@ -20,19 +20,17 @@
             <div class="leftcolumn">
                 <div class="card">
                     <h2>Ask a question:</h2>
-                    <form method="post">
+                    <form method="post" th:object="${postForm}" th:action="@{/posts/create}">
+                        <div><label for="post">Select your tag</label></div> 
+                        <input id="tagName" type="text" name="tagName" th:value="${tagName}"/>
+
                         <div><label for="post">Title</label></div>
-                        <input id="postTitle" type="text" name="postTitle" th:value="*{postTitle}" placeholder="What's your question?"/>
+                        <input id="postTitle" type="text" name="postTitle" th:value="${postTitle}" placeholder="What's your question?"/>
 
                         <div><label for="post">Body</label></div>
-                        <input id="postBody" type="text" name="postBody" th:value="*{postBody}"/>
+                        <input id="postBody" type="text" name="postBody" th:value="${postBody}"/>
 
-                        <div><label for="post">Select your tag</label></div> 
-                        <select size="5">
-                            <article th:each="p : ${alltags}">
-                                <option th:value="${p.name}" th:text="${p.name}"></option>
-                            </article>
-                        </select>
+
                         <div><input type="submit" value="Submit"/></div>
                     </form>
 
@@ -40,7 +38,7 @@
                     <h2>Create a tag:</h2>
                     <form method="post" th:object="${tagForm}">
                         <div><label for="tagName">Tag Name:</label></div>
-                        <input id="tagName" type="text" name="tagName" th:value="tagName"/>
+                        <input id="tagName" type="text" name="tagName" th:value="${tagName}"/>
                         <div><input type="submit" value="Create"/></div>
                     </form>
                 </div>

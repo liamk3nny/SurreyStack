@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author maddi
+ * @author maddie
  */
 public class TagForm {
     

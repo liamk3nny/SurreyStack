@@ -39,7 +39,6 @@ public class PostsController {
     private TagService tagService;
     private CommentService commentService;
     private UserService userService;
-    private UserDetailsImpl userDetails;
 
     public PostsController() {
 
@@ -67,7 +66,7 @@ public class PostsController {
         }
         return "posts/view";
     }
-    
+
     @RequestMapping(value = "/posts/view/{id}", method = RequestMethod.POST)
     public String postComment(@PathVariable("id") Long id, @Valid CommentForm commentForm, BindingResult bindingResult, Model model) {
         List<Tag> alltags = tagService.findAll();
@@ -76,21 +75,21 @@ public class PostsController {
         Set<Comment> postComments = post.getComments();
         model.addAttribute("post", post);
         model.addAttribute("postComments", postComments);
-        
+
         if (bindingResult.hasErrors()) {
-             return "/posts/view/{id}";
+            return "/posts/view/{id}";
         }
-        
+
         String principal = SecurityContextHolder.getContext().getAuthentication().getName();
-        
+        Date date = new Date();
+
         Comment c = new Comment();
-        c.setBody(commentForm.getCommentBody());        
+        c.setBody(commentForm.getCommentBody());
         c.setUser(userService.findByUsername(principal));
         c.setPost(post);
-        Date date = new Date();
         c.setDate(date);
         commentService.create(c);
-        
+
         return "redirect:/posts/view/{id}";
     }
 }

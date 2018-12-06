@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Transactional
-public class TagServiceJpaImpl implements TagService{
+public class TagServiceJpaImpl implements TagService {
 
     private TagRepository tagRepo;
 
@@ -47,6 +47,11 @@ public class TagServiceJpaImpl implements TagService{
     @Override
     public Tag create(Tag tag) {
         return this.tagRepo.save(tag);
+    }
+    
+    @Override
+    public Tag findByName(String tagName){
+        return this.tagRepo.findByName(tagName);
     }
 
 }
