@@ -11,7 +11,7 @@
 
         <h1>Register</h1>
 
-        <form method="post" th:object="${registerForm}">
+        <form method="post" th:object="${registerForm}" th:action="@{/users/register}" action="#">
             <div th:if="${param.error}" class="alert alert-success"> 
                 There has been a problem with your registration.
             </div>

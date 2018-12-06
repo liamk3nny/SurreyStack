@@ -37,8 +37,17 @@ public class RegisterController {
     
     
     @RequestMapping(value = "/users/register", method = RequestMethod.POST)
-    public String registerUser(@Valid RegisterForm registerForm, BindingResult bindingResult, Model model) {
+    public String registerUser(@Valid RegisterForm registerForm, BindingResult bindingResult) {
         
+        System.out.println("Register Controller 1" );
+        System.out.println("Name: " + registerForm.getName());
+        System.out.println("Username: " + registerForm.getUsername());
+        System.out.println("Password: " + registerForm.getPassword() + "\n");
+        
+        
+        System.out.println("Binding Result: " + bindingResult.hasErrors());
+        System.out.println("Binding Result: " + bindingResult.toString());
+        System.out.println("Binding Result: " + bindingResult.getAllErrors() + "\n");
         
         if (bindingResult.hasErrors()) {
              return "/users/register";
@@ -46,7 +55,7 @@ public class RegisterController {
         
         
         
-        
+        /*
         Role userRole = new Role();
         userRole.setRole_id(2L);
         
@@ -54,7 +63,13 @@ public class RegisterController {
         u.setUsername(registerForm.getUsername());
         u.setFullName(registerForm.getName());
         u.setPassword(registerForm.getPassword());
-        u.setRole(userRole);
+        u.setRole(userRole);*/
+        
+        System.out.println("Register Controller 2" );
+        System.out.println("Name: " + registerForm.getName());
+        System.out.println("Username: " + registerForm.getUsername());
+        System.out.println("Password: " + registerForm.getPassword() + "\n");
+        
         //userService.create(u);
         
         
