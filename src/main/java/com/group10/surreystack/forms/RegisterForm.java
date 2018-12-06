@@ -15,15 +15,15 @@ import javax.validation.constraints.Size;
  */
 public class RegisterForm {
     @NotNull
-    @Size(min=5, max=30, message = "Username size should be in the range [5...30]")
+    @Size(min=5, max=30, message = "Username size should be between 5 and 30 characters long")
     private String username;
 
     @NotNull
-    @Size(min=1, max=50)
+    @Size(min=5, max=50)
     private String password;
     
     @NotNull
-    @Size(min=1, max=50)
+    @Size(min=5, max=50)
     private String name;
     
 

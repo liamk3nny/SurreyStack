@@ -55,8 +55,8 @@ public class RegisterController {
         u.setFullName(registerForm.getName());
         u.setPassword(registerForm.getPassword());
         u.setRole(userRole);
-        userService.create(u);
-        model.addAttribute("u", u.getFullName());
+        //userService.create(u);
+        
         
         return "redirect:/users/login?registered";
     }

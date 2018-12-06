@@ -17,26 +17,24 @@
             </div>
             <div th:if="${param.registered}" class="alert alert-success"> 
                 You have successfully registered.
-                <p>full name: </p>
-                <span th:text="${u}"></span>
             </div>
             
             
             <div>
                 <label for="username">Username:</label>
-                <input id="username" type="text" name="username" th:value="*{username}" />
+                <input id="username" type="text" th:field="*{username}" />
                 <span class="formError" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Invalid username</span>
             </div>
             
             <div>
                 <label for="password">Password:</label>
-                <input id="password" type="password" name="password" th:value="*{password}" />
+                <input id="password" type="password" th:field="*{password}" />
                 <span class="formError" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Invalid password</span>
             </div>
             
             <div>
                 <label for="name">Name:</label>
-                <input id="name" type="text" name="name" th:value="*{name}" />
+                <input id="name" type="text" th:field="*{name}" />
                 <span class="formError" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Invalid name</span>
             </div>
             
