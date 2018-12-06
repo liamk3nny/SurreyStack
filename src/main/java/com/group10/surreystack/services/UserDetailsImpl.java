@@ -34,7 +34,7 @@ public class UserDetailsImpl implements UserDetails {
         System.out.println(role.getRolename());
         return authorities;
     }
-
+        
     @Override
     public String getPassword() {
         return user.getPassword();

@@ -5,6 +5,7 @@
  */
 package com.group10.surreystack.controllers;
 
+import com.group10.surreystack.forms.PostForm;
 import com.group10.surreystack.forms.TagForm;
 import com.group10.surreystack.models.Tag;
 import com.group10.surreystack.services.PostService;
@@ -46,6 +47,10 @@ public class CreatePostController {
 
         return "posts/createPost";
     }
+    
+    
+    
+    
 
     @RequestMapping(value = "/posts/create", method = RequestMethod.POST)
     public String createTag(@Valid TagForm tagForm, BindingResult bindingResult, Model model) {
@@ -57,7 +62,6 @@ public class CreatePostController {
         
         Tag t = new Tag();
         t.setName(tagForm.getTagName());
-        
         tagService.create(t);
         
         return "posts/createPost";
