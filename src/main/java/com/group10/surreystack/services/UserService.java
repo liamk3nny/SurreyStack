@@ -14,5 +14,6 @@ import com.group10.surreystack.models.User;
 public interface UserService {
     
     public User findByUsername(String username);
+    public User create(User user);
 
 }

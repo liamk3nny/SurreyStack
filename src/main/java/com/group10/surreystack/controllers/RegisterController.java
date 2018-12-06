@@ -6,11 +6,16 @@
 package com.group10.surreystack.controllers;
 
 import com.group10.surreystack.forms.RegisterForm;
+import com.group10.surreystack.models.Role;
+import com.group10.surreystack.models.User;
 import com.group10.surreystack.services.UserService;
+import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -29,19 +34,29 @@ public class RegisterController {
         return "users/register";
     }
 
+    
+    
     @RequestMapping(value = "/users/register", method = RequestMethod.POST)
-    public String RegisterPage(@Valid RegisterForm registerForm, BindingResult bindingResult) {
+    public String registerUser(@Valid RegisterForm registerForm, BindingResult bindingResult, Model model) {
+        
+        
         if (bindingResult.hasErrors()) {
-             return "users/register";
+             return "redirect:/users/register?error";
         }
         
-        /*
-        if (!userService.authenticate(
-             registerForm.getUsername(), registerForm.getPassword())) {
-             return "users/register";
-        }
-        */
-
-        return "redirect:/users/login";
+        
+        
+        
+        Role userRole = new Role();
+        
+        User u = new User();
+        u.setUsername(registerForm.getUsername());
+        u.setFullName(registerForm.getName());
+        u.setPassword(registerForm.getPassword());
+        u.setRole(userRole);
+        //userService.create(u);
+        model.addAttribute("u", u.getFullName());
+        
+        return "redirect:/users/register?registered";
     }
 }

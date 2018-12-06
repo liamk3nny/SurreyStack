@@ -45,5 +45,10 @@ public class UserServiceJpaImpl implements UserService, UserDetailsService{
         return new UserDetailsImpl(user);
         
     }
+
+    @Override
+    public User create(User user) {
+        return this.userRepository.save(user);
+    }
     
 }
