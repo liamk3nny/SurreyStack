@@ -41,22 +41,23 @@ public class RegisterController {
         
         
         if (bindingResult.hasErrors()) {
-             return "redirect:/users/register?error";
+             return "/users/register";
         }
         
         
         
         
         Role userRole = new Role();
+        userRole.setRole_id(2L);
         
         User u = new User();
         u.setUsername(registerForm.getUsername());
         u.setFullName(registerForm.getName());
         u.setPassword(registerForm.getPassword());
         u.setRole(userRole);
-        //userService.create(u);
+        userService.create(u);
         model.addAttribute("u", u.getFullName());
         
-        return "redirect:/users/register?registered";
+        return "redirect:/users/login?registered";
     }
 }
