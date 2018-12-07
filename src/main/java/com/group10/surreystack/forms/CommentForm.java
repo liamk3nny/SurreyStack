@@ -7,6 +7,7 @@ package com.group10.surreystack.forms;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  *
@@ -14,8 +15,7 @@ import javax.validation.constraints.Size;
  */
 public class CommentForm {
     
-    @NotNull
-    @Size(min=1, max=50)
+    @NotEmpty(message = "Please enter a comment")
     private String commentBody;
 
     public String getCommentBody() {

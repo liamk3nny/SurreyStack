@@ -44,13 +44,14 @@
                         <article th:each="c : ${postComments}">
                             <span style="font-weight: bold;" th:text="${c.user.getUsername()}"></span>
                             <span th:text="${c.body}"></span>
-                            <p class="content" th:text="${#dates.format(c.date, 'dd-MMM-yyyy')}"></p>
+                            <p class="content" th:text="${#dates.format(c.date, 'dd-MMM-yyyy hh:mm:dd')}"></p>
                             <hr>
                         </article>
 
                         <form method="post" th:object="${commentForm}">
                             <div><label for="commentBody">Leave a comment:</label></div>
-                            <input id="commentBody" type="text" name="commentBody" th:value="commentBody"/>
+                            <input id="commentBody" type="text" name="commentBody" th:value="${commentBody}"/>
+                            <span class="commentBody" th:if="${#fields.hasErrors('commentBody')}" th:errors="*{commentBody}"></span>
                             <div><input type="submit" value="Submit"/></div>
                         </form>
                     </div>

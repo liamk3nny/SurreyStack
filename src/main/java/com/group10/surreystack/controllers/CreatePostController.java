@@ -50,7 +50,7 @@ public class CreatePostController {
     }
 
     @RequestMapping(value = "/posts/create", method = RequestMethod.GET)
-    public String createPost(Model model, TagForm tagForm) {
+    public String createPost(Model model, TagForm tagForm, PostForm postForm) {
         List<Tag> alltags = tagService.findAll();
         model.addAttribute("alltags", alltags);
 
@@ -58,7 +58,7 @@ public class CreatePostController {
     }
 
     @RequestMapping(value = "/posts/createTag", method = RequestMethod.GET)
-    public String createTag(Model model, TagForm tagForm) {
+    public String createTag(Model model, TagForm tagForm, PostForm postForm) {
         List<Tag> alltags = tagService.findAll();
         model.addAttribute("alltags", alltags);
 
@@ -66,11 +66,16 @@ public class CreatePostController {
     }
 
     @RequestMapping(value = "/posts/create", method = RequestMethod.POST)
-    public String createPost(@Valid PostForm postForm, BindingResult bindingResult, Model model) {
+    public String createPost(@Valid PostForm postForm, BindingResult bindingResult, Model model, TagForm tagForm) {
         List<Tag> alltags = tagService.findAll();
         model.addAttribute("alltags", alltags);
+        Tag tag = tagService.findByName(postForm.getTagName());
+        if(tag == null){
+            bindingResult.rejectValue("tagName", "error.tag", "Tag name does not exists");
+        }
+        
         if (bindingResult.hasErrors()) {
-            return "posts/create";
+            return "posts/createPost";
         }
 
         String principal = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -88,7 +93,7 @@ public class CreatePostController {
     }
 
     @RequestMapping(value = "/posts/createTag", method = RequestMethod.POST)
-    public String createTag(@Valid TagForm tagForm, BindingResult bindingResult, Model model) {
+    public String createTag(@Valid TagForm tagForm, BindingResult bindingResult, Model model, PostForm postForm) {
         List<Tag> alltags = tagService.findAll();
         model.addAttribute("alltags", alltags);
         Tag tag = tagService.findByName(tagForm.getTagName());

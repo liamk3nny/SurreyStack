@@ -78,7 +78,7 @@ public class PostsController {
         model.addAttribute("postComments", postComments);
         
         if (bindingResult.hasErrors()) {
-             return "/posts/view/{id}";
+             return "posts/view";
         }
         
         String principal = SecurityContextHolder.getContext().getAuthentication().getName();

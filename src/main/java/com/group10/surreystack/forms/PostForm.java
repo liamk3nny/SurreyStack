@@ -6,6 +6,7 @@
 package com.group10.surreystack.forms;
 
 import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  *
@@ -13,13 +14,13 @@ import javax.validation.constraints.NotNull;
  */
 public class PostForm {
 
-    @NotNull
+    @NotEmpty(message = "Title must not be empty")
     private String postTitle;
 
-    @NotNull
+    @NotEmpty(message = "Body must not be empty")
     private String postBody;
 
-    @NotNull
+    @NotEmpty(message = "Tag must not be empty")
     private String tagName;
 
     public String getPostTitle() {
