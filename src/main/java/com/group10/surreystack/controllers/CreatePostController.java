@@ -21,6 +21,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,7 +34,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class CreatePostController {
 
-     private TagService tagService;
+    private TagService tagService;
     private PostService postService;
     private UserService userService;
 
@@ -47,7 +48,7 @@ public class CreatePostController {
         this.postService = postService;
         this.userService = userService;
     }
-    
+
     @RequestMapping(value = "/posts/create", method = RequestMethod.GET)
     public String createPost(Model model, TagForm tagForm) {
         List<Tag> alltags = tagService.findAll();
@@ -55,8 +56,16 @@ public class CreatePostController {
 
         return "posts/createPost";
     }
-    
-     @RequestMapping(value = "/posts/create", method = RequestMethod.POST)
+
+    @RequestMapping(value = "/posts/createTag", method = RequestMethod.GET)
+    public String createTag(Model model, TagForm tagForm) {
+        List<Tag> alltags = tagService.findAll();
+        model.addAttribute("alltags", alltags);
+
+        return "posts/createPost";
+    }
+
+    @RequestMapping(value = "/posts/create", method = RequestMethod.POST)
     public String createPost(@Valid PostForm postForm, BindingResult bindingResult, Model model) {
         List<Tag> alltags = tagService.findAll();
         model.addAttribute("alltags", alltags);
@@ -68,7 +77,7 @@ public class CreatePostController {
         Date date = new Date();
 
         Post p = new Post();
-        p.setTag(tagService.findByName(postForm.getTagName()));        
+        p.setTag(tagService.findByName(postForm.getTagName()));
         p.setTitle(postForm.getPostTitle());
         p.setBody(postForm.getPostBody());
         p.setUser(userService.findByUsername(principal));
@@ -76,20 +85,25 @@ public class CreatePostController {
         postService.create(p);
 
         return "posts/createPost";
-    } 
+    }
 
     @RequestMapping(value = "/posts/createTag", method = RequestMethod.POST)
     public String createTag(@Valid TagForm tagForm, BindingResult bindingResult, Model model) {
         List<Tag> alltags = tagService.findAll();
         model.addAttribute("alltags", alltags);
         if (bindingResult.hasErrors()) {
-             return "posts/create";
+            return "posts/createPost";
         }
-        
+
+        for (Tag tag : alltags) {
+            if (tag.getName().equals(tagForm.getTagName())) {
+                return "posts/createPost";
+            }
+        }
+
         Tag t = new Tag();
         t.setName(tagForm.getTagName());
         tagService.create(t);
-        
         return "posts/createPost";
     }
 

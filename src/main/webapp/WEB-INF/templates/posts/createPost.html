@@ -39,6 +39,7 @@
                     <form method="post" th:object="${tagForm}" action="createTag">
                         <div><label for="tagName">Tag Name:</label></div>
                         <input id="tagName" type="text" name="tagName" th:value="${tagName}"/>
+                        <span class="formError" th:if="${#fields.hasErrors('tagName')}" th:errors="*{tagName}">Tag already exists</span>
                         <div><input type="submit" value="Create"/></div>
                     </form>
                 </div>

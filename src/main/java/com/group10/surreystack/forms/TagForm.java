@@ -6,6 +6,7 @@
 package com.group10.surreystack.forms;
 
 import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  *
@@ -13,7 +14,7 @@ import javax.validation.constraints.NotNull;
  */
 public class TagForm {
     
-    @NotNull
+    @NotEmpty(message="Tag name must not be blank")
     private String tagName;
 
     public String getTagName() {
