@@ -35,12 +35,6 @@ public class RegisterController {
              return "users/register";
         }
         
-        /*
-        if (!userService.authenticate(
-             registerForm.getUsername(), registerForm.getPassword())) {
-             return "users/register";
-        }
-        */
 
         return "redirect:/users/login";
     }

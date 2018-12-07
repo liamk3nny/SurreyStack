@@ -19,15 +19,11 @@ import org.springframework.data.domain.Pageable;
 public interface PostService {
 
     Page<Post> findAll(Pageable pageable);
-    // List<Post> findLatest5();
-    //Page<Post> findAllOrdered(Pageable pageable);
 
     Post findById(Long id);
     
     Long count();
 
-    // List<Post> findUserPosts(Long userId);
- //   List<Post> findPostsByTag(Long tag_id);
     Post create(Post post);
     Post edit(Post post);
     void deleteById(Long id);

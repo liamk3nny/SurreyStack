@@ -41,13 +41,6 @@ public class PostServiceJpaImpl implements PostService {
         return postList;
     }
 
-//    @Override
-//    public Page<Post> findAllOrdered(Pageable pageable) {
-//        Page<Post> postList = this.postRepo.findByDateIsTrueOrderByDateTimeDesc(pageable);
-//        return postList;
-//
-//    }
-
     public Long count() {
         return this.postRepo.count();
     }

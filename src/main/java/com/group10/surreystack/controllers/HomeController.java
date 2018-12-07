@@ -41,30 +41,13 @@ public class HomeController {
     public HomeController() {
 
     }
-
+    
     @Autowired
     public HomeController(PostService postService, TagService tagService) {
         this.postService = postService;
         this.tagService = tagService;
     }
 
-//    @RequestMapping(value = "/", method = RequestMethod.GET)
-//    public String defaultURL(Model model) {
-//
-//        List<Tag> alltags = tagService.findAll();
-//        model.addAttribute("alltags", alltags);
-//
-//        model.addAttribute("principal", getPrincipal());
-//
-//        List<Post> latest5Posts = postService.findAll();
-//        //  model.addAttribute("latest5posts", latest5Posts);
-//
-//        List<Post> latest3Posts = latest5Posts.stream().limit(3).collect(Collectors.toList());
-//        model.addAttribute("latest5posts", latest3Posts);
-//
-//        //model.addAttribute("latest3posts", latest3Posts);
-//        return "home";
-//    }
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(Model model, @RequestParam(defaultValue = "0") int page) {
 
