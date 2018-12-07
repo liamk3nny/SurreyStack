@@ -9,6 +9,8 @@ import com.group10.surreystack.models.Post;
 import com.group10.surreystack.models.Tag;
 import com.group10.surreystack.services.PostService;
 import com.group10.surreystack.services.TagService;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,5 +57,14 @@ public class TagController {
     private String getPrincipal(){
         return SecurityContextHolder.getContext().getAuthentication().getName();
      
+    }
+    
+    private List<Post> sortPosts(Set<Post> posts){
+        List<Post> postsList = new ArrayList<Post>();
+        for(Post post : posts){
+            postsList.add(post);
+        }
+        Collections.sort(postsList,(arg0,arg1)-> arg1.getDate().compareTo(arg0.getDate()));
+        return postsList;
     }
 }

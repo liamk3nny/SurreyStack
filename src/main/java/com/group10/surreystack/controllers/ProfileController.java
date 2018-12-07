@@ -5,7 +5,10 @@ import com.group10.surreystack.models.Post;
 import com.group10.surreystack.models.User;
 import com.group10.surreystack.services.PostService;
 import com.group10.surreystack.services.UserService;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -28,9 +31,12 @@ public class ProfileController {
     public String profile(Model model, ProfileForm profileForm) {
         User user = userService.findByUsername(getPrincipal());
         
+        
+        
+        
         model.addAttribute("fullName", user.getFullName());
         model.addAttribute("principal", user.getUsername());
-        model.addAttribute("posts", user.getPosts());
+        model.addAttribute("posts", sortPosts(user.getPosts()));
        
         
         return "users/profile";
@@ -45,14 +51,18 @@ public class ProfileController {
         if(!passwordEncoder.matches(profileForm.getPrev_password(), user.getPassword())){
             return "redirect:/users/profile?error";
         }
+        
+        
         model.addAttribute("fullName", user.getFullName());
         model.addAttribute("principal", user.getUsername());
-        model.addAttribute("posts", user.getPosts());
+        model.addAttribute("posts", sortPosts(user.getPosts()));
+        
+        
         if (bindingResult.hasErrors()) {
             return "/users/profile";
         }
-       
         
+      
         user.setPassword(passwordEncoder.encode(profileForm.getPassword()));
         userService.save(user);
         
@@ -65,4 +75,17 @@ public class ProfileController {
         return SecurityContextHolder.getContext().getAuthentication().getName();
      
     }
+    
+    private List<Post> sortPosts(Set<Post> posts){
+        List<Post> postsList = new ArrayList<Post>();
+        for(Post post : posts){
+            postsList.add(post);
+        }
+        Collections.sort(postsList,(arg0,arg1)-> arg1.getDate().compareTo(arg0.getDate()));
+        return postsList;
+    }
+
+  
+    
+    
 }
