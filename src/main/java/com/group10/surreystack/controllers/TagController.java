@@ -46,7 +46,7 @@ public class TagController {
         Tag tag = tagService.findById(id);
         model.addAttribute("tag", tag);
         Set<Post> post = tag.getPosts();
-        model.addAttribute("post", post);
+        model.addAttribute("post", sortPosts(post));
         model.addAttribute("principal", getPrincipal());
         if (post == null) {
             return "redirect:/home";

@@ -14,6 +14,8 @@ import com.group10.surreystack.services.PostService;
 import com.group10.surreystack.services.TagService;
 import com.group10.surreystack.services.UserDetailsImpl;
 import com.group10.surreystack.services.UserService;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -77,7 +79,7 @@ public class PostsController {
         Post post = postService.findById(id);
         Set<Comment> postComments = post.getComments();
         model.addAttribute("post", post);
-        model.addAttribute("postComments", postComments);
+        model.addAttribute("postComments", sortComments(postComments));
         
         if (bindingResult.hasErrors()) {
              return "posts/view";
@@ -99,5 +101,14 @@ public class PostsController {
     private String getPrincipal(){
         return SecurityContextHolder.getContext().getAuthentication().getName();
      
+    }
+    
+    private List<Comment> sortComments(Set<Comment> comments){
+        List<Comment> commentsList = new ArrayList<Comment>();
+        for(Comment comment : comments){
+            commentsList.add(comment);
+        }
+        Collections.sort(commentsList,(arg0,arg1)-> arg1.getDate().compareTo(arg0.getDate()));
+        return commentsList;
     }
 }
