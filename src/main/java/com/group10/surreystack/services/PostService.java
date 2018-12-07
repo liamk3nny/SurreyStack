@@ -22,9 +22,13 @@ public interface PostService {
     Post findById(Long id);
 
     // List<Post> findUserPosts(Long userId);
- //   List<Post> findPostsByTag(Long tag_id);
+    //   List<Post> findPostsByTag(Long tag_id);
     Post create(Post post);
+
     Post edit(Post post);
+
     void deleteById(Long id);
+
+    List<Post> findAllByOrderByIdAsc();
 
 }

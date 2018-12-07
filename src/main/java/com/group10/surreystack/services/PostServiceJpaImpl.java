@@ -14,6 +14,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import com.group10.surreystack.repositories.PostRepository;
 import javax.transaction.Transactional;
+import org.springframework.data.domain.Sort;
 
 /**
  *
@@ -38,7 +39,7 @@ public class PostServiceJpaImpl implements PostService {
     
     @Override
     public List<Post> findAll() {
-        return this.postRepo.findAll();
+        return this.postRepo.findAll(sortByIdAsc());
     }
 
   //  @Override
@@ -76,4 +77,13 @@ public class PostServiceJpaImpl implements PostService {
         this.postRepo.deleteById(id);
     }
 
+    @Override
+    public List<Post> findAllByOrderByIdAsc() {
+        return this.postRepo.findAllByOrderByIdAsc();
+    }
+
+
+    private Sort sortByIdAsc(){
+        return new Sort(Sort.Direction.ASC, "id");
+    }
 }
