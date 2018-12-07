@@ -11,8 +11,11 @@ import com.group10.surreystack.models.Tag;
 
 import com.group10.surreystack.services.PostService;
 import com.group10.surreystack.services.TagService;
+import java.util.ArrayList;
+import java.util.Collections;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -29,18 +32,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HomeController {
 
     // Constructor based Dependency Injection
-	private PostService postService;
-        private TagService tagService;
-
-	public HomeController() {
-
-	}
-
-	@Autowired
-	public HomeController(PostService postService, TagService tagService) {
-		this.postService = postService;
-                this.tagService = tagService;
-	}
+    @Autowired
+    private PostService postService;
+    
+    @Autowired
+    private TagService tagService;
+    
+    public HomeController() {
+    }
+    
+    @Autowired
+    public HomeController(PostService postService, TagService tagService) {
+        this.postService = postService;
+        this.tagService = tagService;
+    }
   
 
 
@@ -69,11 +74,17 @@ public class HomeController {
     }
     
     private String getPrincipal(){
-        String userName = null;
-        String principal = SecurityContextHolder.getContext().getAuthentication().getName();
-        String principal2 = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
-        
-        return principal + " - " + principal2;
+        return SecurityContextHolder.getContext().getAuthentication().getName();
+     
+    }
+    
+    private List<Post> sortPosts(Set<Post> posts){
+        List<Post> postsList = new ArrayList<Post>();
+        for(Post post : posts){
+            postsList.add(post);
+        }
+        Collections.sort(postsList,(arg0,arg1)-> arg1.getDate().compareTo(arg0.getDate()));
+        return postsList;
     }
 
 

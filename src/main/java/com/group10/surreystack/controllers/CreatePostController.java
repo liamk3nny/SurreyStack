@@ -62,6 +62,8 @@ public class CreatePostController {
     public String createTag(Model model, TagForm tagForm, PostForm postForm) {
         List<Tag> alltags = tagService.findAll();
         model.addAttribute("alltags", alltags);
+        
+        model.addAttribute("principal", getPrincipal());
 
         return "posts/createPost";
     }
@@ -112,6 +114,11 @@ public class CreatePostController {
         t.setName(tagForm.getTagName());
         tagService.create(t);
         return "posts/createPost";
+    }
+    
+    private String getPrincipal(){
+        return SecurityContextHolder.getContext().getAuthentication().getName();
+     
     }
 
 }

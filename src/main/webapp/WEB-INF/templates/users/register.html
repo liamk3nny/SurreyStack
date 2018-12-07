@@ -3,6 +3,7 @@
 
     <head th:replace="layout :: site-head">
         <title>Register</title>
+        <link rel="stylesheet" href="../../css/main.css" th:href="@{/css/main.css}" />
     </head>
 
     <body>
@@ -12,28 +13,28 @@
         <h1>Register</h1>
 
         <form method="post" th:object="${registerForm}" th:action="@{/users/register}" action="#">
-            <div th:if="${param.error}" class="alert alert-success"> 
+            <div th:if="${param.error}" class="alert-success"> 
                 There has been a problem with your registration.
             </div>
-            <div th:if="${param.registered}" class="alert alert-success"> 
+            <div th:if="${param.registered}" class="alert-success"> 
                 You have successfully registered.
             </div>
             
             <table>
                 <tr>
+                    <td><label for="name">Name:</label></td>
+                    <td><input id="name" type="text" th:field="*{name}" placeholder="Name"/></td>
+                    <td><span class="formError" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Invalid name</span></td>
+                </tr>
+                <tr>
                     <td><label for="username">Username:</label></td>
-                    <td><input id="username" type="text" th:field="*{username}" /></td>
+                    <td><input id="username" type="text" th:field="*{username}" placeholder="Username"/></td>
                     <td><span class="formError" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Invalid username</span></td>
                 </tr>
                 <tr>
                     <td><label for="password">Password:</label></td>
-                    <td><input id="password" type="password" th:field="*{password}" /></td>
+                    <td><input id="password" type="password" th:field="*{password}" placeholder="Password"/></td>
                     <td><span class="formError" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Invalid password</span></td>
-                </tr>
-                <tr>
-                    <td><label for="name">Name:</label></td>
-                    <td><input id="name" type="text" th:field="*{name}" /></td>
-                    <td><span class="formError" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Invalid name</span></td>
                 </tr>
                 <tr>
                     

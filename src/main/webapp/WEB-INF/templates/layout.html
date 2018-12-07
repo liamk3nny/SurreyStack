@@ -18,12 +18,10 @@
             <link rel="stylesheet" href="../../css/styles.css" th:href="@{/css/styles.css}" />
             <a href="index.html" th:href="@{/}"><img src="../../img/site-logo.png" th:src="@{/img/site-logo.png}" alt="whoops" style="width:40px;height:40px;"/> </a>
             <a href="index.html" th:href="@{/}">Home</a>
-            <a href="users/login.html" th:href="@{/users/login}">Login</a>
-            <a href="users/register.html" th:href="@{/users/register}">Register</a>
             <a href="posts/create.html" th:href="@{/posts/create}">Create Post</a>
-            <a href="users/profile.html" th:href="@{/users/profile}">Users</a>
+            
 
-            <div id="logged-in-info"> <span>Hello, <b><span th:text="${principal}"></span></b></span>
+            <div id="logged-in-info"> <span>Hello, <b><a href="users/profile.html" th:href="@{/users/profile}" th:text="${principal}"></a></b></span>
                 <form th:action="@{/app-logout}" method="post" >
                     <input type="submit" value="Logout"/>
                 </form>

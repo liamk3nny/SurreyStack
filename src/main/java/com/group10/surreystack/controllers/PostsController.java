@@ -64,6 +64,7 @@ public class PostsController {
         Set<Comment> postComments = post.getComments();
         model.addAttribute("post", post);
         model.addAttribute("postComments", postComments);
+        model.addAttribute("principal", getPrincipal());
         if (post == null) {
             return "redirect:/home";
         }
@@ -94,5 +95,10 @@ public class PostsController {
         commentService.create(c);
         
         return "/posts/view";
+    }
+    
+    private String getPrincipal(){
+        return SecurityContextHolder.getContext().getAuthentication().getName();
+     
     }
 }
