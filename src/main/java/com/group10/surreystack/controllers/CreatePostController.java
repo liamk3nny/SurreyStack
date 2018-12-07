@@ -14,6 +14,7 @@ import java.util.Collections;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -44,6 +45,8 @@ public class CreatePostController {
     public String createPost(Model model, TagForm tagForm) {
         List<Tag> alltags = tagService.findAll();
         model.addAttribute("alltags", alltags);
+        
+        model.addAttribute("principal", getPrincipal());
 
         return "posts/createPost";
     }
@@ -65,6 +68,11 @@ public class CreatePostController {
         tagService.create(t);
         
         return "posts/createPost";
+    }
+    
+    private String getPrincipal(){
+        return SecurityContextHolder.getContext().getAuthentication().getName();
+     
     }
 
 }

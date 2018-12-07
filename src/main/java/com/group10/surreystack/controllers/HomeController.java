@@ -29,18 +29,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HomeController {
 
     // Constructor based Dependency Injection
-	private PostService postService;
-        private TagService tagService;
-
-	public HomeController() {
-
-	}
-
-	@Autowired
-	public HomeController(PostService postService, TagService tagService) {
-		this.postService = postService;
-                this.tagService = tagService;
-	}
+    @Autowired
+    private PostService postService;
+    
+    @Autowired
+    private TagService tagService;
+    
+    public HomeController() {
+    }
+    
+    @Autowired
+    public HomeController(PostService postService, TagService tagService) {
+        this.postService = postService;
+        this.tagService = tagService;
+    }
   
 
 
@@ -69,11 +71,8 @@ public class HomeController {
     }
     
     private String getPrincipal(){
-        String userName = null;
-        String principal = SecurityContextHolder.getContext().getAuthentication().getName();
-        String principal2 = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
-        
-        return principal + " - " + principal2;
+        return SecurityContextHolder.getContext().getAuthentication().getName();
+     
     }
 
 

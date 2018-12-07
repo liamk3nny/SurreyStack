@@ -12,6 +12,7 @@ import com.group10.surreystack.services.TagService;
 import java.util.List;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,9 +45,15 @@ public class TagController {
         model.addAttribute("tag", tag);
         Set<Post> post = tag.getPosts();
         model.addAttribute("post", post);
+        model.addAttribute("principal", getPrincipal());
         if (post == null) {
             return "redirect:/home";
         }
         return "tags/view";
+    }
+    
+    private String getPrincipal(){
+        return SecurityContextHolder.getContext().getAuthentication().getName();
+     
     }
 }
