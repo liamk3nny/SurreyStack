@@ -47,11 +47,5 @@ public class CommentServiceJpaImpl implements CommentService {
     public void deleteById(Long id){
         this.commentRepo.deleteById(id);
     }
-    
-//    @Transactional
-//    @Override
-//    public void deleteAllByPostId(Long id){
-//        this.commentRepo.deleteAllByPostId(id);
-//    }
 
 }

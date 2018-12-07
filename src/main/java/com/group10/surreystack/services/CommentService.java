@@ -22,7 +22,4 @@ public interface CommentService {
     
     void deleteById(Long id);
     
-    //@Transactional
-    //@Modifying
-    //void deleteAllByPostId(Long id);
 }
