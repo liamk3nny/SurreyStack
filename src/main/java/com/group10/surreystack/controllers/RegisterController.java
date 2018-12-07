@@ -30,7 +30,7 @@ public class RegisterController {
     private UserService userService;
 
     
-    @RequestMapping("/users/register")
+    @RequestMapping(value="/users/register", method = RequestMethod.GET)
     public String register(RegisterForm registerForm) {
         return "users/register";
     }

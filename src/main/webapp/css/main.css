@@ -67,3 +67,11 @@ body {
     height:100px;
     font-size:14pt;
 }
+
+.alert-success{
+    color: green;
+}
+
+.alert-danger{
+    color: red;
+}

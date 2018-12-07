@@ -10,15 +10,71 @@
         
         <h1>Profile</h1>
         
-        <main>
-            <p th:text="${username}">Username</p>
-            <p th:text="${fullName}">Full name</p>
+        
             
-            <h2>Posts</h2>
             
-            <div th:each="p : ${userPosts}">
-                <a href="#" th:text="${p.title}" th:href="@{/posts/view/{id}/(id=${p.id})}"></a>
+            <form method="post" th:object="${profileForm}" th:action="@{/users/profile}" action="#">
+                <table>
+                    <tr>
+                        <td><label for="fullName">Name:</label></td>
+                        <td><label for="fullName" th:text="${fullName}">Name:</label></td>
+                    </tr>
+                    <tr>
+                        <td><label for="username">Username:</label></td>
+                        <td><label for="username" th:text="${principal}">Username:</label></td>
+                    </tr>
+                </table>
+                <h2>Update Password</h2>
+                
+                <table>
+                    <tr>
+                        <td><label for="prev_password">Old password</label></td>
+                        <td><input id="prev_password" type="password" th:field="*{prev_password}" placeholder="Password"/></td>
+                        <td><span class="formError" th:if="${#fields.hasErrors('prev_password')}" th:errors="*{prev_password}">Invalid password</span></td>
+                        <td><span th:if="${param.error}" class="alert-danger">Incorrect Password</span></td>
+                    </tr>
+                    <tr>
+                        <td><label for="updatePassword">New password</label></td>
+                        <td><input id="password" type="password" th:field="*{password}" placeholder="Password"/></td>
+                        <td><span class="formError" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Invalid password</span></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" value="Update"/></td>
+                    </tr>
+                </table>
+                
+            </form>
+            
+            <div th:if="${param.updated}" class="alert alert-success"> 
+                Your password has been updated.
             </div>
+            
+            
+            
+            
+            
+            
+            
+            <h2>My Posts</h2>
+            
+            <article th:each="p : ${posts}">
+                <div class="card">
+                    <h2><a href="#" class="title" th:text="${p.title}" th:href="@{/posts/view/{id}/(id=${p.post_id})}">Post Title</a></h2>
+                    <div class="date">
+                        <i>Posted on</i>
+                        <span th:text="${#dates.format(p.date, 'dd-MMM-yyyy')}"></span>
+                        <span th:if="${p.user}" th:remove="tag">
+                            <i>by</i>
+                            <span th:text="${p.user.fullName != null ?
+                                  p.user.fullName : p.user.username}"></span>
+                                      
+                        </span>
+                        <i>Tagged</i>
+                        <span th:text="${p.tag.name}"></span>
+                    </div>
+                    <p class="content" th:utext="${p.body}">Post content</p>
+                </div>
+            </article>
             
         </main>
         
