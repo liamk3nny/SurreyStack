@@ -12,6 +12,7 @@ import com.group10.surreystack.services.UserService;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -38,22 +39,21 @@ public class RegisterController {
     
     @RequestMapping(value = "/users/register", method = RequestMethod.POST)
     public String registerUser(@Valid RegisterForm registerForm, BindingResult bindingResult) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         
         
         if (bindingResult.hasErrors()) {
              return "/users/register";
         }
-        
-        
-        
-        
+
         Role userRole = new Role();
         userRole.setRole_id(2L);
         
         User u = new User();
         u.setUsername(registerForm.getUsername());
         u.setFullName(registerForm.getName());
-        u.setPassword(registerForm.getPassword());
+        //u.setPassword(registerForm.getPassword());
+        u.setPassword(passwordEncoder.encode(registerForm.getPassword()));
         u.setRole(userRole);
         
         userService.create(u);

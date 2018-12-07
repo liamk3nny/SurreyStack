@@ -5,7 +5,7 @@
  */
 package com.group10.surreystack.controllers;
 
-import com.group10.surreystack.controllers.dto.UserRegistrationDto;
+
 import com.group10.surreystack.forms.LoginForm;
 import com.group10.surreystack.services.UserService;
 import javax.validation.Valid;
