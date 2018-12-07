@@ -7,12 +7,17 @@ package com.group10.surreystack.controllers;
 
 import com.group10.surreystack.forms.RegisterForm;
 import com.group10.surreystack.models.Tag;
+import com.group10.surreystack.models.Role;
 import com.group10.surreystack.models.User;
 import com.group10.surreystack.services.UserService;
+import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -31,6 +36,8 @@ public class RegisterController {
         return "users/register";
     }
 
+    
+    
     @RequestMapping(value = "/users/register", method = RequestMethod.POST)
     public String RegisterPage(@Valid RegisterForm registerForm, BindingResult bindingResult) {
         User user = userService.findByUsername(registerForm.getUsername());
@@ -39,15 +46,23 @@ public class RegisterController {
         }
 
         if (bindingResult.hasErrors()) {
-            return "users/register";
+             return "/users/register";
         }
+        
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-        /*
-        if (!userService.authenticate(
-             registerForm.getUsername(), registerForm.getPassword())) {
-             return "users/register";
-        }
-         */
-        return "redirect:/users/login";
+        Role userRole = new Role();
+        userRole.setRole_id(2L);
+        
+        User u = new User();
+        u.setUsername(registerForm.getUsername());
+        u.setFullName(registerForm.getName());
+        u.setPassword(passwordEncoder.encode(registerForm.getPassword()));
+        u.setRole(userRole);
+        
+        userService.create(u);
+                
+        return "redirect:/users/login?registered";
+
     }
 }

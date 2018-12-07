@@ -54,5 +54,9 @@ public class TagServiceJpaImpl implements TagService{
         return this.tagRepo.findByName(tagName);
     }
 
+    @Override
+    public void deleteById(Long id){
+        this.tagRepo.deleteById(id);
+    }
 
 }

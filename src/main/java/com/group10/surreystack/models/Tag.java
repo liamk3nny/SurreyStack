@@ -7,6 +7,7 @@ package com.group10.surreystack.models;
 
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,7 +32,7 @@ public class Tag {
     @Column(nullable = false, length = 30, unique = true)
     private String name;
     
-    @OneToMany(mappedBy = "tag")
+    @OneToMany(mappedBy = "tag", cascade = CascadeType.REMOVE)
     private Set<Post> posts = new HashSet<Post>();
 
     public  Tag(){}

@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
  *
@@ -28,7 +29,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception{
-        auth.userDetailsService(userService);
+        auth.userDetailsService(userService).passwordEncoder(new BCryptPasswordEncoder());
+        //auth.userDetailsService(userService);
     }
     
    
@@ -38,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         http.csrf().disable().authorizeRequests()
                 .antMatchers("/users/register").permitAll()
                 .antMatchers("/", "/posts/**", "/tags/**", "/users/profile").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
-                .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/users/admin").access("hasRole('ROLE_ADMIN')")
                 .and().formLogin().loginPage("/users/login").permitAll()
                 .and().logout().logoutUrl("/app-logout")
                 .logoutSuccessUrl("/users/login?logout")

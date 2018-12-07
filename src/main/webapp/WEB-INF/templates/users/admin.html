@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+    <head th:replace="layout :: site-head">
+        <title>Admin Console</title>        
+    </head>
+
+    <body>
+        
+        <header th:replace="layout :: admin-header" />
+        
+        <h1>Admin Console</h1>
+        
+        <form method="delete" th:object="${deleteUserForm}" th:action="@{/users/admin/deleteUser}">
+            <div th:if="${param.error}" class="alert alert-success"> 
+                There has been a problem with deleting the user from the database.
+            </div>
+            <div th:if="${param.deletedUser}" class="alert alert-success"> 
+                You have successfully deleted a user.
+            </div>
+            
+            <h2>Delete user</h2>
+            <label for="userId">User ID: </label>
+            <input id="userId" required="true" type="text" th:field="*{userId}" />
+            <span class="formError" th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}">Invalid user ID</span>
+            
+            <div><input type="submit" value="Submit"/></div>
+        </form>
+        
+        <form method="delete" th:object="${deleteTagForm}" th:action="@{/users/admin/deleteTag}">
+            <div th:if="${param.error}" class="alert alert-success">
+                There has been a problem with deleting the tag from the database.
+            </div>
+            <div th:if="${param.deletedTag}" class="alert alert-success"> 
+                You have successfully deleted a tag.
+            </div>
+            
+            <h2>Delete tag</h2>
+            <label for="tagId">Tag ID: </label>
+            <input id="tagId" required="true" type="text" th:field="*{tagId}" />
+            <span class="formError" th:if="${#fields.hasErrors('tagId')}" th:errors="*{tagId}">Invalid tag ID</span>
+            
+            <div><input type="submit" value="Submit"/></div>
+        </form>
+        
+        <form method="delete" th:object="${deletePostForm}" th:action="@{/users/admin/deletePost}">
+            <div th:if="${param.error}" class="alert alert-success"> 
+                There has been a problem with deleting the post from the database.
+            </div>
+            <div th:if="${param.deletedPost}" class="alert alert-success"> 
+                You have successfully deleted a post.
+            </div>
+            
+            <h2>Delete post</h2>
+            <label for="postId">Post ID: </label>
+            <input id="postId" required="true" type="text" th:field="*{postId}" />
+            <span class="formError" th:if="${#fields.hasErrors('postId')}" th:errors="*{postId}">Invalid post ID</span>
+            
+            <div><input type="submit" value="Submit"/></div>
+        </form>
+        
+        <form method="delete" th:object="${deleteCommentForm}" th:action="@{/users/admin/deleteComment}">
+            <div th:if="${param.error}" class="alert alert-success"> 
+                There has been a problem with deleting the comment from the database.
+            </div>
+            <div th:if="${param.deletedComment}" class="alert alert-success"> 
+                You have successfully deleted a comment.
+            </div>
+            
+            <h2>Delete comment</h2>
+            <label for="commentId">Comment ID: </label>
+            <input id="commentId" required="true" type="text" th:field="*{commentId}" />
+            <span class="formError" th:if="${#fields.hasErrors('commentId')}" th:errors="*{commentId}">Invalid comment ID</span>
+            
+            <div><input type="submit" value="Submit"/></div>
+        </form>
+        
+    </body>
+</html>

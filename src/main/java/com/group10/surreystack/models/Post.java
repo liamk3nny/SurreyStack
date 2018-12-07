@@ -8,6 +8,7 @@ package com.group10.surreystack.models;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -48,7 +49,7 @@ public class Post {
     @JoinColumn(name="tag_id")
     private Tag tag;
          
-    @OneToMany(mappedBy = "post")
+    @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
     private Set<Comment> comments = new HashSet<Comment>();
     
     @Column(nullable = false)

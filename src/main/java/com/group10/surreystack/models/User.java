@@ -7,6 +7,7 @@ package com.group10.surreystack.models;
 
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -40,7 +41,7 @@ public class User {
     @Column(length = 100)
     private String fullName;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private Set<Post> posts = new HashSet<Post>();
 
     @OneToMany(mappedBy = "user")

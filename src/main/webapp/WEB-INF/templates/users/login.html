@@ -12,36 +12,37 @@
         
         <h1>Login</h1>
 
-        <form method="post" th:action="@{/users/login}">
+        <form method="post" th:object="${loginForm}" th:action="@{/users/login}">
             <div th:if="${param.error}" class="alert alert-danger">    
                 Invalid username and password.
             </div>
             <div th:if="${param.logout}" class="alert alert-success"> 
                 You have been logged out.
             </div>
-            
-            <div>
-            <label for="username">Username:</label>
-            <input id="username" 
-                   type="text" 
-                   name="username" 
-                   placeholder="Username" 
-                   required="true" 
-                   th:value="*{username}" />
+            <div th:if="${param.registered}" class="alert alert-success"> 
+                You have successfully registered.
             </div>
             
-            <div>
-            <label for="password">Password:</label>
-            <input id="password" 
-                   type="password" 
-                   name="password" 
-                   placeholder="Password" 
-                   required="true" 
-                   th:value="*{password}" />
-            </div>
+            <table>
+                <tr>
+                    <td><label for="username">Username:</label></td>
+                    <td><input id="username" type="text"  placeholder="Username" required="true" th:field="*{username}"/></td>
+                    <td><span class="formError" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Invalid username</span></td>
+                </tr>
+                <tr>
+                    <td><label for="password">Password:</label></td>
+                    <td><input id="password" type="password" placeholder="Password" required="true" th:field="*{password}" /></td>
+                    <td><span class="formError" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Invalid password</span></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="Login"/></td>
+                    <td><a href="register.html" th:href="@{/users/register}">[Go to Register]</a></td>
+                </tr>
+            </table>
             
-            <div><input type="submit" value="Login"/>
-                <a href="register.html" th:href="@{/users/register}">[Go to Register]</a></div>
+         
+            
+                
         </form>
         
         
