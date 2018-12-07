@@ -7,14 +7,24 @@
     <body>
         <header th:include="layout :: site-header" />
 
-
         <div class="row">
             <div class="rightcolumn">
                 <div class="card">
                     <h2>Tags</h2>
-                    <article th:each="p : ${alltags}">
-                        <a href="#" th:text="${p.name}" th:href="@{/tags/view/{id}/(id=${p.tag_id})}"></a>
-                    </article>
+                    
+                    <div id="showtags1">
+                        <article th:each="p, iter : ${alltags}">
+                            <a th:if="${iter.count <= 5}" href="#" th:text="${p.name}" th:href="@{/tags/view/{id}/(id=${p.tag_id})}"></a>
+                        </article>
+                    </div>
+                    
+                    <div id="showtags2" style="display:none">
+                        <article th:each="p : ${alltags}">
+                            <a href="#" th:text="${p.name}" th:href="@{/tags/view/{id}/(id=${p.tag_id})}"></a>
+                        </article>
+                    </div>
+                    
+                    <button type="button" id="showMoreTags" class="showMoreTags" onclick="showMoreTags()">Show more</button>
                 </div>
             </div>
             <div class="leftcolumn">
@@ -37,10 +47,10 @@
 
                         <div><input type="submit" value="Submit"/></div>
                     </form>
-
+                    <button type="button" id="showForm" class="showForm" onclick="showForm()">Create Tag</button>
 
                     <h2>Create a tag:</h2>
-                    <form method="post" th:object="${tagForm}" action="createTag">
+                    <form method="post" th:object="${tagForm}" action="createTag" id="createTagForm" style="display:none">
                         <div><label for="tagName">Tag Name:</label></div>
                         <input id="tagName" type="text" name="tagName" th:value="${tagName}"/>
                         <span class="formError" th:if="${#fields.hasErrors('tagName')}" th:errors="*{tagName}"></span>

@@ -17,7 +17,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
- *
+ * This class creates a comment for a post
+ * 
  * @author aruns
  */
 @Entity

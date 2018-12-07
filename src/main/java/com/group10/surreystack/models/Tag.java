@@ -16,7 +16,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- *
+ * This class creates a Tag which has many posts
+ * 
  * @author liamkenny
  */
 @Entity

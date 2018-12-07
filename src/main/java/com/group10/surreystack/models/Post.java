@@ -21,7 +21,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- *
+ * This class Post which is created by one user under one tag, but can have many comments
+ * 
  * @author aruns
  */
 @Entity

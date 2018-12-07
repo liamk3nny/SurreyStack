@@ -1,9 +1,11 @@
+function showMoreTags() {
+    $("#showtags1").hide();
+    $("#showMoreTags").hide();
+    $("#showtags2").show();
+}
 
-$(function () {
-    $('#messages li').click(function () {
-        $(this).fadeOut();
-    });
-    setTimeout(function () {
-        $('#messages li.info').fadeOut();
-    }, 3000);
-});
+function showForm() {
+    $("#createTagForm").show();
+}
+
+

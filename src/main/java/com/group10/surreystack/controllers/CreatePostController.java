@@ -25,6 +25,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -69,6 +70,8 @@ public class CreatePostController {
     public String createPost(@Valid PostForm postForm, BindingResult bindingResult, Model model, TagForm tagForm) {
         List<Tag> alltags = tagService.findAll();
         model.addAttribute("alltags", alltags);
+        
+        
         Tag tag = tagService.findByName(postForm.getTagName());
         if(tag == null){
             bindingResult.rejectValue("tagName", "error.tag", "Tag name does not exists");

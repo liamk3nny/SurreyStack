@@ -19,7 +19,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- *
+ * This class creates a User which has a username, password and full name.
+ * This user can create many posts and comments
+ * 
  * @author aruns
  */
 @Entity

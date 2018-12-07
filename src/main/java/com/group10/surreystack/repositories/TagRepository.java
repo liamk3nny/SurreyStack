@@ -11,12 +11,20 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**
- *
+ * This class creates a JPA repository for a Tag object, which helps find Tags 
+ * in the database
+ * 
  * @author aruns
  */
 @Repository
 public interface TagRepository extends JpaRepository<Tag, Long> {
 
+    /**
+     * Defines a method which finds a tag by the name entered in as the parameter
+     * 
+     * @param tagName
+     * @return 
+     */
     public Tag findByName(@Param("tagName") String tagName);
 
 }

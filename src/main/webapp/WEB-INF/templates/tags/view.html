@@ -13,9 +13,20 @@
             <div class="rightcolumn">
                 <div class="card">
                     <h2>Tags</h2>
-                    <article th:each="p : ${alltags}">
-                        <a href="#" th:text="${p.name}" th:href="@{/tags/view/{id}/(id=${p.tag_id})}"></a>
-                    </article>
+                    
+                    <div id="showtags1">
+                        <article th:each="p, iter : ${alltags}">
+                            <a th:if="${iter.count <= 5}" href="#" th:text="${p.name}" th:href="@{/tags/view/{id}/(id=${p.tag_id})}"></a>
+                        </article>
+                    </div>
+                    
+                    <div id="showtags2" style="display:none">
+                        <article th:each="p : ${alltags}">
+                            <a href="#" th:text="${p.name}" th:href="@{/tags/view/{id}/(id=${p.tag_id})}"></a>
+                        </article>
+                    </div>
+                    
+                    <button type="button" id="showMoreTags" class="showMoreTags" onclick="showMoreTags()">Show more</button>
                 </div>
             </div>
 
