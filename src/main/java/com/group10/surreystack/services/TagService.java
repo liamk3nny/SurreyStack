@@ -13,8 +13,13 @@ import java.util.List;
  * @author liamkenny
  */
 public interface TagService {
-    
+
     List<Tag> findAll();
+
     Tag findById(Long id);
+
     Tag create(Tag tag);
+
+    Tag findByName(String tagName);
+
 }
