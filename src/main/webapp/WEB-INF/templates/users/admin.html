@@ -27,6 +27,38 @@
             <div><input type="submit" value="Submit"/></div>
         </form>
         
+        <form method="delete" th:object="${deleteTagForm}" th:action="@{/users/admin/deleteTag}">
+            <div th:if="${param.error}" class="alert alert-success">
+                There has been a problem with deleting the tag from the database.
+            </div>
+            <div th:if="${param.deletedTag}" class="alert alert-success"> 
+                You have successfully deleted a tag.
+            </div>
+            
+            <h2>Delete tag</h2>
+            <label for="tagId">Tag ID: </label>
+            <input id="tagId" required="true" type="text" th:field="*{tagId}" />
+            <span class="formError" th:if="${#fields.hasErrors('tagId')}" th:errors="*{tagId}">Invalid tag ID</span>
+            
+            <div><input type="submit" value="Submit"/></div>
+        </form>
+        
+        <form method="delete" th:object="${deletePostForm}" th:action="@{/users/admin/deletePost}">
+            <div th:if="${param.error}" class="alert alert-success"> 
+                There has been a problem with deleting the post from the database.
+            </div>
+            <div th:if="${param.deletedPost}" class="alert alert-success"> 
+                You have successfully deleted a post.
+            </div>
+            
+            <h2>Delete post</h2>
+            <label for="postId">Post ID: </label>
+            <input id="postId" required="true" type="text" th:field="*{postId}" />
+            <span class="formError" th:if="${#fields.hasErrors('postId')}" th:errors="*{postId}">Invalid post ID</span>
+            
+            <div><input type="submit" value="Submit"/></div>
+        </form>
+        
         <form method="delete" th:object="${deleteCommentForm}" th:action="@{/users/admin/deleteComment}">
             <div th:if="${param.error}" class="alert alert-success"> 
                 There has been a problem with deleting the comment from the database.
@@ -42,7 +74,6 @@
             
             <div><input type="submit" value="Submit"/></div>
         </form>
-        
         
     </body>
 </html>

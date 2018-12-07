@@ -48,5 +48,10 @@ public class TagServiceJpaImpl implements TagService{
     public Tag create(Tag tag) {
         return this.tagRepo.save(tag);
     }
+    
+    @Override
+    public void deleteById(Long id){
+        this.tagRepo.deleteById(id);
+    }
 
 }

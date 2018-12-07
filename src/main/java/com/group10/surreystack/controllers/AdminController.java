@@ -6,8 +6,12 @@
 package com.group10.surreystack.controllers;
 
 import com.group10.surreystack.forms.DeleteCommentForm;
+import com.group10.surreystack.forms.DeletePostForm;
+import com.group10.surreystack.forms.DeleteTagForm;
 import com.group10.surreystack.forms.DeleteUserForm;
 import com.group10.surreystack.services.CommentService;
+import com.group10.surreystack.services.PostService;
+import com.group10.surreystack.services.TagService;
 import com.group10.surreystack.services.UserService;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +30,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class AdminController {
     
     @Autowired
-    private UserService userService;
-    
-    @Autowired
     private CommentService commentService;
     
+    @Autowired
+    private TagService tagService;
+    
+    @Autowired
+    private PostService postService;
+    
+    @Autowired
+    private UserService userService;
+    
     @RequestMapping(value = "/users/admin", method = RequestMethod.GET)
-    public String register(DeleteUserForm deleteUserForm, DeleteCommentForm deleteCommentForm, Model model) {
+    public String register(DeleteUserForm deleteUserForm, DeletePostForm deletePostForm, DeleteTagForm deleteTagForm, DeleteCommentForm deleteCommentForm, Model model) {
         model.addAttribute("principal", getPrincipal());
         
         return "/users/admin";
@@ -44,10 +54,31 @@ public class AdminController {
              return "/users/admin";
         }
         
-        //commentService.deleteAllById()
         userService.deleteById(deleteUserForm.getUserId());
         
         return "redirect:/users/admin?deletedUser";
+    }
+    
+    @RequestMapping("/users/admin/deleteTag")
+    public String deleteTag(@Valid DeleteTagForm deleteTagForm, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+             return "/users/admin";
+        }
+        
+        tagService.deleteById(deleteTagForm.getTagId());
+        
+        return "redirect:/users/admin?deletedTag";
+    }
+    
+    @RequestMapping("/users/admin/deletePost")
+    public String deletePost(@Valid DeletePostForm deletePostForm, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+             return "/users/admin";
+        }
+        
+        postService.deleteById(deletePostForm.getPostId());
+        
+        return "redirect:/users/admin?deletedPost";
     }
     
     @RequestMapping("/users/admin/deleteComment")
@@ -60,10 +91,6 @@ public class AdminController {
         
         return "redirect:/users/admin?deletedComment";
     }
-    
-    //to delete user:
-    //delete all of the comments with user_id's
-    //delete all of the posts with user_id's 
     
     private String getPrincipal(){
         String userName = null;
