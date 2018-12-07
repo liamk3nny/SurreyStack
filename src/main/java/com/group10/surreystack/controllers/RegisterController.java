@@ -47,7 +47,7 @@ public class RegisterController {
         }
 
         Role userRole = new Role();
-        userRole.setRole_id(2L);
+        userRole.setRole_id(1L);
         
         User u = new User();
         u.setUsername(registerForm.getUsername());

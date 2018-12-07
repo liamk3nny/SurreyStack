@@ -40,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         http.csrf().disable().authorizeRequests()
                 .antMatchers("/users/register").permitAll()
                 .antMatchers("/", "/posts/**", "/tags/**", "/users/profile").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
-                .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/users/admin/**").access("hasRole('ROLE_ADMIN')")
                 .and().formLogin().loginPage("/users/login").permitAll()
                 .and().logout().logoutUrl("/app-logout")
                 .logoutSuccessUrl("/users/login?logout")

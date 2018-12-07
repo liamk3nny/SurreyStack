@@ -56,6 +56,9 @@ public class UserServiceJpaImpl implements UserService, UserDetailsService{
         return this.userRepository.save(user);
     }
     
- 
+    @Override
+    public void deleteById(Long id){
+        this.userRepository.deleteById(id);
+    }
     
 }
