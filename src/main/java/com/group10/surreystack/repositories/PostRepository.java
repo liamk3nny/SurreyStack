@@ -7,11 +7,11 @@ package com.group10.surreystack.repositories;
 
 import com.group10.surreystack.models.Post;
 import com.group10.surreystack.models.Tag;
-import java.awt.print.Pageable;
 import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -21,10 +21,14 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-    //  @Query("SELECT p FROM Post p LEFT JOIN FETCH p.author ORDER BY p.date DESC")
+    //  @Query("SELECT p FROM Post p  ORDER BY p.date DESC")
     //  List<Post> findLatest5Posts(Pageable pageable);
     
   //  @Query("SELECT p FROM Post p WHERE p.tag_id = :tag_id")    
     //public List<Post> findByTag(@Param("tag_id") Long tag_id);
+   // public Page<Post> findByDateIsTrueOrderByDateTimeDesc(Pageable pageable);
+    @Query("SELECT p FROM Post p  ORDER BY p.date DESC")
+    public Page<Post> findAll(Pageable pageable);
+
 
 }

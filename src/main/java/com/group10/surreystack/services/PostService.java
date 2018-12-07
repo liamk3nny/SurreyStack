@@ -9,6 +9,8 @@ import com.group10.surreystack.models.Post;
 import com.group10.surreystack.models.Tag;
 
 import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
  *
@@ -16,10 +18,13 @@ import java.util.List;
  */
 public interface PostService {
 
-    List<Post> findAll();
+    Page<Post> findAll(Pageable pageable);
     // List<Post> findLatest5();
+    //Page<Post> findAllOrdered(Pageable pageable);
 
     Post findById(Long id);
+    
+    Long count();
 
     // List<Post> findUserPosts(Long userId);
  //   List<Post> findPostsByTag(Long tag_id);

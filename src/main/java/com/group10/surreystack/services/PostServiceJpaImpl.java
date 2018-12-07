@@ -6,14 +6,13 @@
 package com.group10.surreystack.services;
 
 import com.group10.surreystack.models.Post;
-import com.group10.surreystack.models.Tag;
-import java.awt.print.Pageable;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import com.group10.surreystack.repositories.PostRepository;
 import javax.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
  *
@@ -35,26 +34,23 @@ public class PostServiceJpaImpl implements PostService {
         super();
         this.postRepo = postRepo;
     }
-    
+
     @Override
-    public List<Post> findAll() {
-        return this.postRepo.findAll();
+    public Page<Post> findAll(Pageable pageable) {
+        Page<Post> postList = this.postRepo.findAll(pageable);
+        return postList;
     }
 
-  //  @Override
-//    public List<Post> findLatest5() {
-   //     return this.postRepo.findLatest5Posts()(new PageRequest(0, 5));
-    //}
-
 //    @Override
-//    public List<Post> findUserPosts(Long userId) {
-//        return this.postRepo.findAll();
-//    }
+//    public Page<Post> findAllOrdered(Pageable pageable) {
+//        Page<Post> postList = this.postRepo.findByDateIsTrueOrderByDateTimeDesc(pageable);
+//        return postList;
 //
-  //  @Override
-    //public List<Post> findPostsByTag(Long tag_id) {
-      //  return this.postRepo.findByTag(tag_id);
-    //}
+//    }
+
+    public Long count() {
+        return this.postRepo.count();
+    }
 
     @Override
     public Post findById(Long id) {
