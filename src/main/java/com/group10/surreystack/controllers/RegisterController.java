@@ -6,6 +6,8 @@
 package com.group10.surreystack.controllers;
 
 import com.group10.surreystack.forms.RegisterForm;
+import com.group10.surreystack.models.Tag;
+import com.group10.surreystack.models.User;
 import com.group10.surreystack.services.UserService;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +22,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class RegisterController {
+
     @Autowired
     private UserService userService;
 
-    
     @RequestMapping("/users/register")
     public String register(RegisterForm registerForm) {
         return "users/register";
@@ -31,17 +33,21 @@ public class RegisterController {
 
     @RequestMapping(value = "/users/register", method = RequestMethod.POST)
     public String RegisterPage(@Valid RegisterForm registerForm, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-             return "users/register";
+        User user = userService.findByUsername(registerForm.getUsername());
+        if (user != null) {
+            bindingResult.rejectValue("username", "error.user", "Username already taken");
         }
-        
+
+        if (bindingResult.hasErrors()) {
+            return "users/register";
+        }
+
         /*
         if (!userService.authenticate(
              registerForm.getUsername(), registerForm.getPassword())) {
              return "users/register";
         }
-        */
-
+         */
         return "redirect:/users/login";
     }
 }

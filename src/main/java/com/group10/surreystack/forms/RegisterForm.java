@@ -8,21 +8,22 @@ package com.group10.surreystack.forms;
 import java.util.Date;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  *
  * @author aruns
  */
 public class RegisterForm {
-    @NotNull
+    @NotEmpty(message = "Please enter a username")
     @Size(min=5, max=30, message = "Username size should be in the range [5...30]")
     private String username;
 
-    @NotNull
-    @Size(min=1, max=50)
+    @NotEmpty(message = "Please enter a password")
+    @Size(min=1, max=50, message = "password size should be greater than 5 characters")
     private String password;
     
-    @NotNull
+    @NotEmpty(message = "Please enter your name")
     @Size(min=1, max=50)
     private String name;
     
