@@ -17,12 +17,16 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -31,14 +35,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class HomeController {
 
-    // Constructor based Dependency Injection
-    @Autowired
+    
     private PostService postService;
-    
-    @Autowired
     private TagService tagService;
-    
+
+    // Constructor based Dependency Injection
     public HomeController() {
+
     }
     
     @Autowired
@@ -48,44 +51,44 @@ public class HomeController {
     }
   
 
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String home(Model model, @RequestParam(defaultValue = "0") int page) {
 
-    @RequestMapping(value = "/" ,method = RequestMethod.GET)
-    public String defaultURL(Model model) {
+        
+        List<Tag> alltags = tagService.findAll();
+        model.addAttribute("alltags", alltags);
 
-      List<Tag> alltags = tagService.findAll();
-      model.addAttribute("alltags", alltags);
-      
-      model.addAttribute("principal", getPrincipal());
-
-      List<Post> latest5Posts = postService.findAll();
-      //  model.addAttribute("latest5posts", latest5Posts);
-
-      List<Post> latest3Posts = latest5Posts.stream().limit(3).collect(Collectors.toList());
-            model.addAttribute("latest5posts", latest3Posts);
-
-        //model.addAttribute("latest3posts", latest3Posts);
-
+        model.addAttribute("principal", getPrincipal());
+        
+        
+        model.addAttribute("data", postService.
+                findAll(PageRequest.of(page, 2)));
+        model.addAttribute("currentPage",page);
         return "home";
+
     }
-    
-    @RequestMapping(value = "/access_denied" ,method = RequestMethod.GET)
-    public String accessDenied(Model model) {
+
+    @RequestMapping(value = "/access_denied", method = RequestMethod.GET)
+    public String accessDenied(Model model
+    ) {
         return "access_denied";
     }
-    
-    private String getPrincipal(){
-        return SecurityContextHolder.getContext().getAuthentication().getName();
-     
-    }
-    
-    private List<Post> sortPosts(Set<Post> posts){
-        List<Post> postsList = new ArrayList<Post>();
-        for(Post post : posts){
-            postsList.add(post);
-        }
-        Collections.sort(postsList,(arg0,arg1)-> arg1.getDate().compareTo(arg0.getDate()));
-        return postsList;
-    }
 
+    
+//    private List<Post> sortPosts(Set<Post> posts){
+//        List<Post> postsList = new ArrayList<Post>();
+//        for(Post post : posts){
+//            postsList.add(post);
+//        }
+//        Collections.sort(postsList,(arg0,arg1)-> arg1.getDate().compareTo(arg0.getDate()));
+//        return postsList;
+
+    private String getPrincipal() {
+        String userName = null;
+        String principal = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        return principal;
+
+    }
 
 }

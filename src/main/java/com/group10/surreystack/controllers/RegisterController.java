@@ -64,5 +64,6 @@ public class RegisterController {
                 
         return "redirect:/users/login?registered";
 
+
     }
 }
