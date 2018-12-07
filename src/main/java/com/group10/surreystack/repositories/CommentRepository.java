@@ -9,6 +9,7 @@ import com.group10.surreystack.models.Comment;
 import java.util.List;
 import org.hibernate.annotations.Parameter;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -24,5 +25,7 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
      
       //   List<Comment> findByPost_Id(@Parameter(name="id")Long post_id);
 
-
+     //@Modifying
+     //@Query("DELETE FROM comments where comments.user_id ")
+     
 }

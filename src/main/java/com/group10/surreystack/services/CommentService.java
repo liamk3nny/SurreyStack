@@ -17,4 +17,5 @@ import org.springframework.stereotype.Service;
 public interface CommentService {
    // List<Comment> findByPost_ID($Parameter(name="id")Long post_id);
     Comment create(Comment comment);
+    void deleteById(Long id);
 }

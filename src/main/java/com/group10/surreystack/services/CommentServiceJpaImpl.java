@@ -42,5 +42,10 @@ public class CommentServiceJpaImpl implements CommentService {
     public Comment create(Comment comment) {
         return this.commentRepo.save(comment);
     }
+    
+    @Override
+    public void deleteById(Long id){
+        this.commentRepo.deleteById(id);
+    }
 
 }

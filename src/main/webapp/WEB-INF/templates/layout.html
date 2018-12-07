@@ -29,6 +29,15 @@
                 </form>
             </div>   
         </header>
+        
+        <header th:fragment="admin-header">
+            <link rel="stylesheet" href="../../css/styles.css" th:href="@{/css/styles.css}" />
+            <div id="logged-in-info"> <span>Hello, <b><span th:text="${principal}"></span></b></span>
+                <form th:action="@{/app-logout}" method="post" >
+                    <input type="submit" value="Logout"/>
+                </form>
+            </div>   
+        </header>
 
         <footer th:fragment="site-footer">
             &copy;  Surrey Stack, 2018
