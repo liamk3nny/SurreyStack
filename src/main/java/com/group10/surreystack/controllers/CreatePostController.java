@@ -91,14 +91,13 @@ public class CreatePostController {
     public String createTag(@Valid TagForm tagForm, BindingResult bindingResult, Model model) {
         List<Tag> alltags = tagService.findAll();
         model.addAttribute("alltags", alltags);
+        Tag tag = tagService.findByName(tagForm.getTagName());
+        if(tag != null){
+            bindingResult.rejectValue("tagName", "error.tag", "Tag name already exists");
+        }
+        
         if (bindingResult.hasErrors()) {
             return "posts/createPost";
-        }
-
-        for (Tag tag : alltags) {
-            if (tag.getName().equals(tagForm.getTagName())) {
-                return "posts/createPost";
-            }
         }
 
         Tag t = new Tag();
