@@ -53,8 +53,12 @@ public class AdminController {
         if (bindingResult.hasErrors()) {
             return "/users/admin";
         }
-
-        userService.deleteById(deleteUserForm.getUserId());
+        try{
+            userService.deleteById(deleteUserForm.getUserId());
+        }catch(Exception e){
+            return "redirect:/users/admin?user_error";
+        }
+        
 
         return "redirect:/users/admin";
     }
@@ -64,8 +68,12 @@ public class AdminController {
         if (bindingResult.hasErrors()) {
             return "/users/admin";
         }
-
-        tagService.deleteById(deleteTagForm.getTagId());
+        try{
+            tagService.deleteById(deleteTagForm.getTagId());
+        }catch(Exception e){
+            return "redirect:/users/admin?tag_error";
+        }
+        
 
         return "redirect:/users/admin";
     }
@@ -75,8 +83,12 @@ public class AdminController {
         if (bindingResult.hasErrors()) {
             return "/users/admin";
         }
-
-        postService.deleteById(deletePostForm.getPostId());
+        try{
+           postService.deleteById(deletePostForm.getPostId()); 
+        }catch(Exception e){
+            return "redirect:/users/admin?post_error";
+        }
+        
 
         return "redirect:/users/admin";
     }
@@ -86,8 +98,12 @@ public class AdminController {
         if (bindingResult.hasErrors()) {
             return "/users/admin";
         }
-
-        commentService.deleteById(deleteCommentForm.getCommentId());
+        try{
+            commentService.deleteById(deleteCommentForm.getCommentId());
+        }catch(Exception e){
+            return "redirect:/users/admin?comment_error";
+        }
+        
 
         return "redirect:/users/admin";
     }
