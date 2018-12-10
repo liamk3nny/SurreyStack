@@ -47,12 +47,7 @@ public class ProfileController {
     public String updatePassword(Model model, @Valid ProfileForm profileForm, BindingResult bindingResult) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(); 
         User user = userService.findByUsername(getPrincipal());
-        
-        if(!passwordEncoder.matches(profileForm.getPrev_password(), user.getPassword())){
-            return "redirect:/users/profile?error";
-        }
-        
-        
+    
         model.addAttribute("fullName", user.getFullName());
         model.addAttribute("principal", user.getUsername());
         model.addAttribute("posts", sortPosts(user.getPosts()));
@@ -61,7 +56,9 @@ public class ProfileController {
         if (bindingResult.hasErrors()) {
             return "/users/profile";
         }
-        
+        if(!passwordEncoder.matches(profileForm.getPrev_password(), user.getPassword())){
+            return "redirect:/users/profile?error";
+        }
       
         user.setPassword(passwordEncoder.encode(profileForm.getPassword()));
         userService.save(user);
