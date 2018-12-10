@@ -20,9 +20,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- * This class creates a User which has a username, password and full name.
- * This user can create many posts and comments
- * 
+ * This class creates a user object with its required attributes. It defines the
+ * entity relationships which exist in the database. 
+ * A user can have many posts and comments.
+ *
  * @author aruns
  */
 @Entity
@@ -46,12 +47,10 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private Set<Comment> comments = new HashSet<Comment>();
-    
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name="role_id")
-    private Role role;
 
-    
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "role_id")
+    private Role role;
 
     public User() {
     }
@@ -60,7 +59,7 @@ public class User {
         this.user_id = user_id;
         this.username = username;
         this.fullName = fullName;
-        
+
     }
 
     public Role getRole() {
@@ -110,6 +109,7 @@ public class User {
     public void setPosts(Set<Post> comments) {
         this.posts = posts;
     }
+
     public Set<Comment> getcomments() {
         return comments;
     }

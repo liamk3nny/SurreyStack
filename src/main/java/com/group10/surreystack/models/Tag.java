@@ -17,8 +17,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- * This class creates a Tag which has many posts
- * 
+ * This class creates a tag object with its required attributes. 
+ * It defines the entity relationships which exist in the database. 
+ * A tag can have many posts.
+ *
  * @author liamkenny
  */
 @Entity
@@ -28,15 +30,16 @@ public class Tag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long tag_id;
-   
+
     @Column(nullable = false, length = 30, unique = true)
     private String name;
-    
+
     @OneToMany(mappedBy = "tag", cascade = CascadeType.REMOVE)
     private Set<Post> posts = new HashSet<Post>();
 
-    public  Tag(){}
-    
+    public Tag() {
+    }
+
     public Tag(Long id, String name) {
         this.tag_id = id;
         this.name = name;

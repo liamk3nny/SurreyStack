@@ -8,14 +8,17 @@ package com.group10.surreystack.services;
 import com.group10.surreystack.models.User;
 
 /**
- *
+ * Interface for UserServiceJpaImpl
  * @author aruns
  */
 public interface UserService {
-    
+
     public User findByUsername(String username);
+
     public User create(User user);
+
     void deleteById(Long id);
+
     public User save(User user);
 
 }

@@ -5,15 +5,13 @@
  */
 package com.group10.surreystack.forms;
 
-import java.util.Date;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotEmpty;
-import javax.validation.constraints.Min;
 
 
 /**
- *
+ * This class retrieves the information for a user registering.
+ * If the username or password is not the right length or is empty, an error message will be displayed.
  * @author aruns
  */
 public class RegisterForm {

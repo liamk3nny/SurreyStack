@@ -6,7 +6,6 @@
 package com.group10.surreystack.services;
 
 import com.group10.surreystack.models.Post;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.group10.surreystack.repositories.PostRepository;
@@ -15,6 +14,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 /**
+ * This class implements the Jpa methods which find, count, create, edit and
+ * delete posts.
  *
  * @author aruns
  */

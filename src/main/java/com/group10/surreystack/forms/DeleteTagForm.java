@@ -8,7 +8,7 @@ package com.group10.surreystack.forms;
 import javax.validation.constraints.NotNull;
 
 /**
- *
+ * This class gets the id of the tag being deleted.
  * @author ikamp
  */
 public class DeleteTagForm {

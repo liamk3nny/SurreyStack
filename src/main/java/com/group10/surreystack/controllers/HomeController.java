@@ -5,22 +5,12 @@
  */
 package com.group10.surreystack.controllers;
 
-import com.group10.surreystack.forms.LoginForm;
-import com.group10.surreystack.models.Post;
 import com.group10.surreystack.models.Tag;
-
 import com.group10.surreystack.services.PostService;
 import com.group10.surreystack.services.TagService;
-import java.util.ArrayList;
-import java.util.Collections;
-
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,7 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
- *
+ * This controller contains methods to display the top 10 most recent posts on the home page.
+ * 
  * @author aruns
  */
 @Controller
@@ -51,6 +42,16 @@ public class HomeController {
     }
   
 
+    /**
+     * This method displays the view for the home page using a GET method.
+     * It retrieve the view and adds a list of all tags from the application to the list of tags on the side.
+     * It gets the user information about the current user to show their username
+     * in the top right hand corner of the header bar in the view.
+     * It defines how many posts are shown per page.
+     * @param model
+     * @param page
+     * @return 
+     */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(Model model, @RequestParam(defaultValue = "0") int page) {
 
@@ -62,29 +63,30 @@ public class HomeController {
         
         
         model.addAttribute("data", postService.
-                findAll(PageRequest.of(page, 2)));
+                findAll(PageRequest.of(page, 10)));
         model.addAttribute("currentPage",page);
         return "home";
 
     }
 
+    /**
+     * If a user is not logged in, this method will show an access denied page.
+     * The main contents of the application should only be view by authenticated 
+     * logged in users.
+     * @param model
+     * @return 
+     */
     @RequestMapping(value = "/access_denied", method = RequestMethod.GET)
     public String accessDenied(Model model
     ) {
         return "access_denied";
     }
 
-    
-//    private List<Post> sortPosts(Set<Post> posts){
-//        List<Post> postsList = new ArrayList<Post>();
-//        for(Post post : posts){
-//            postsList.add(post);
-//        }
-//        Collections.sort(postsList,(arg0,arg1)-> arg1.getDate().compareTo(arg0.getDate()));
-//        return postsList;
-
+    /**
+     * Gets the current users information, which is used to populate the header bar.
+     * @return 
+     */
     private String getPrincipal() {
-        String userName = null;
         String principal = SecurityContextHolder.getContext().getAuthentication().getName();
 
         return principal;

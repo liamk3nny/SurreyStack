@@ -6,7 +6,8 @@
 package com.group10.surreystack.forms;
 
 /**
- *
+ * This class retrieves the information for a user logging in.
+ * If the username or password is not the right length, an error message will be displayed.
  * @author aruns
  */
 

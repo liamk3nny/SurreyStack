@@ -5,12 +5,12 @@
  */
 package com.group10.surreystack.forms;
 
-import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
- *
- * @author maddi
+ * This class retrieves the information for a new post being created.
+ * If the title, body or tag is empty, an error message will be displayed.
+ * @author maddie
  */
 public class PostForm {
 

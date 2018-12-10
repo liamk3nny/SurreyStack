@@ -9,7 +9,8 @@ import com.group10.surreystack.models.Tag;
 import java.util.List;
 
 /**
- *
+ * Interface for TagServiceJpaImpl
+
  * @author liamkenny
  */
 public interface TagService {

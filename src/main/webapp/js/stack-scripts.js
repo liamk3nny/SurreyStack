@@ -5,7 +5,7 @@ function showMoreTags() {
 }
 
 function showForm() {
-    $("#createTagForm").show();
+    $("#tagCreate").show();
 }
 
 

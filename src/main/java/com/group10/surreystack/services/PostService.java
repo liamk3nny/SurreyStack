@@ -6,13 +6,11 @@
 package com.group10.surreystack.services;
 
 import com.group10.surreystack.models.Post;
-import com.group10.surreystack.models.Tag;
-
-import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 /**
+ * Interface for PostServiceJpaImpl
  *
  * @author aruns
  */
@@ -21,11 +19,13 @@ public interface PostService {
     Page<Post> findAll(Pageable pageable);
 
     Post findById(Long id);
-    
+
     Long count();
 
     Post create(Post post);
+
     Post edit(Post post);
+
     void deleteById(Long id);
 
 }

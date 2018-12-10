@@ -13,7 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- *
+ * This class implements the Jpa methods which finds, creates and deletes tags.
+ * 
  * @author aruns
  */
 @Service

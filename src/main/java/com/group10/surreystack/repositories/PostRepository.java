@@ -6,10 +6,6 @@
 package com.group10.surreystack.repositories;
 
 import com.group10.surreystack.models.Post;
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.group10.surreystack.models.Tag;
-import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,21 +13,20 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 /**
- * This class creates a JPA repository for a Post object, which helps find Posts 
+ * This class creates a JPA repository for a Post object, which helps find Posts
  * in the database
- * 
+ *
  * @author aruns
  */
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-
-    //  @Query("SELECT p FROM Post p  ORDER BY p.date DESC")
-    //  List<Post> findLatest5Posts(Pageable pageable);
-    
-  //  @Query("SELECT p FROM Post p WHERE p.tag_id = :tag_id")    
-    //public List<Post> findByTag(@Param("tag_id") Long tag_id);
-   // public Page<Post> findByDateIsTrueOrderByDateTimeDesc(Pageable pageable);
+    /**
+     * Query to find all posts in the database and order them by date.
+     *
+     * @param pageable
+     * @return
+     */
     @Query("SELECT p FROM Post p  ORDER BY p.date DESC")
     public Page<Post> findAll(Pageable pageable);
 

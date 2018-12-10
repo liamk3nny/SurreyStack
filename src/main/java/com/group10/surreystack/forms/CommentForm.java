@@ -5,13 +5,12 @@
  */
 package com.group10.surreystack.forms;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
- *
- * @author maddi
+ * This class retrieves the information for a new comment being created.
+ * If the comment is empty, an error message will be displayed.
+ * @author maddie
  */
 public class CommentForm {
     

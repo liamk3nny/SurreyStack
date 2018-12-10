@@ -16,26 +16,25 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
+ * This class creates a role object with its required attributes. 
+ * It defines the entity relationships which exist in the database. 
+ * A role can have many users.
  *
  * @author liamkenny
  */
 @Entity
 @Table(name = "roles")
 public class Role {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long role_id;
-    
+
     @Column(nullable = false, length = 30, unique = true)
     private String rolename;
-    
+
     @OneToMany(mappedBy = "role")
     private Set<User> users = new HashSet<User>();
-    
-    
-    
-    
 
     public Long getRole_id() {
         return role_id;
@@ -61,5 +60,4 @@ public class Role {
         this.users = users;
     }
 
-    
 }

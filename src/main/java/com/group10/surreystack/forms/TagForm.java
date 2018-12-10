@@ -5,12 +5,12 @@
  */
 package com.group10.surreystack.forms;
 
-import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
- *
- * @author maddi
+ * This class retrieves the information for a new tag being created.
+ * If the name is empty, an error message will be displayed.
+ * @author maddie
  */
 public class TagForm {
     

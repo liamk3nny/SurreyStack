@@ -9,7 +9,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
- *
+ * This class get the information for a user updating their password.
+ * It ensure that the password fields cannot be empty.
  * @author liamkenny
  */
 public class ProfileForm {

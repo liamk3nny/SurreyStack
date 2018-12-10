@@ -17,8 +17,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
- * This class creates a comment for a post
- * 
+ * This class creates a comment object with its required attributes. 
+ * It defines the entity relationships which exist in the database. 
+ * A comment can only have one post and one user.
+ *
  * @author aruns
  */
 @Entity
@@ -33,18 +35,19 @@ public class Comment {
     private String body;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name="user_id")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name="post_id")
+    @JoinColumn(name = "post_id")
     private Post post;
 
     @Column(nullable = false)
     private Date date = new Date();
 
-    public Comment(){}
-    
+    public Comment() {
+    }
+
     public Comment(Long comment_id, String body, User user, Post post) {
         this.comment_id = comment_id;
         this.body = body;
@@ -79,7 +82,6 @@ public class Comment {
     public void setUser(User user) {
         this.user = user;
     }
-  
 
     public void setDate(Date date) {
         this.date = date;

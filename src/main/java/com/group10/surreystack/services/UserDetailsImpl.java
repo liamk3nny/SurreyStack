@@ -15,26 +15,30 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 /**
- *
+ * This class authorises users.
+ * 
  * @author liamkenny
  */
 public class UserDetailsImpl implements UserDetails {
-    
+
     private User user;
 
     public UserDetailsImpl(User user) {
         this.user = user;
     }
-
+    
+    /**
+     * Determines what the user is and isn't allowed to access.
+     * @return 
+     */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
         Role role = user.getRole();
-        authorities.add(new SimpleGrantedAuthority(role.getRolename() ));
-        System.out.println(role.getRolename());
+        authorities.add(new SimpleGrantedAuthority(role.getRolename()));
         return authorities;
     }
-        
+
     @Override
     public String getPassword() {
         return user.getPassword();
@@ -52,7 +56,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;    
+        return true;
     }
 
     @Override
@@ -64,5 +68,5 @@ public class UserDetailsImpl implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-    
+
 }

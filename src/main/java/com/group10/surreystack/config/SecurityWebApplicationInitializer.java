@@ -8,7 +8,7 @@ package com.group10.surreystack.config;
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 
 /**
- *
+ * This class initialises spring security.
  * @author liamkenny
  */
 public class SecurityWebApplicationInitializer extends AbstractSecurityWebApplicationInitializer
