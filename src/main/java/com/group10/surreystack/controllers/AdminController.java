@@ -29,17 +29,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class AdminController {
 
-    @Autowired
+
     private CommentService commentService;
-
-    @Autowired
     private TagService tagService;
-
-    @Autowired
     private PostService postService;
-
-    @Autowired
     private UserService userService;
+    
+    public AdminController(){
+        
+    }
+    
+    @Autowired
+    public AdminController(CommentService commentService, TagService tagService, PostService postService, UserService userService){
+        this.commentService = commentService;
+        this.tagService = tagService;
+        this.postService = postService;
+        this.userService = userService;
+    }
 
     @RequestMapping(value = "/users/admin", method = RequestMethod.GET)
     public String register(DeleteUserForm deleteUserForm, DeletePostForm deletePostForm, DeleteTagForm deleteTagForm, DeleteCommentForm deleteCommentForm, Model model) {
@@ -48,7 +54,7 @@ public class AdminController {
         return "/users/admin";
     }
 
-    @RequestMapping("/users/admin/deleteUser")
+    @RequestMapping(value="/users/admin/deleteUser")
     public String deleteUser(@Valid DeleteUserForm deleteUserForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "/users/admin";
@@ -63,7 +69,7 @@ public class AdminController {
         return "redirect:/users/admin";
     }
 
-    @RequestMapping("/users/admin/deleteTag")
+    @RequestMapping(value="/users/admin/deleteTag")
     public String deleteTag(@Valid DeleteTagForm deleteTagForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "/users/admin";
@@ -78,7 +84,7 @@ public class AdminController {
         return "redirect:/users/admin";
     }
 
-    @RequestMapping("/users/admin/deletePost")
+    @RequestMapping(value="/users/admin/deletePost")
     public String deletePost(@Valid DeletePostForm deletePostForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "/users/admin";
@@ -93,7 +99,7 @@ public class AdminController {
         return "redirect:/users/admin";
     }
 
-    @RequestMapping("/users/admin/deleteComment")
+    @RequestMapping(value="/users/admin/deleteComment")
     public String deleteComment(@Valid DeleteCommentForm deleteCommentForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "/users/admin";
