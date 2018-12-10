@@ -11,24 +11,36 @@
             <div class="rightcolumn">
                 <div class="card">
                     <h2>Tags</h2>
-                    
+
                     <div id="showtags1">
                         <article th:each="p, iter : ${alltags}">
                             <a th:if="${iter.count <= 5}" href="#" th:text="${p.name}" th:href="@{/tags/view/{id}/(id=${p.tag_id})}"></a>
                         </article>
                     </div>
-                    
+
                     <div id="showtags2" style="display:none">
                         <article th:each="p : ${alltags}">
                             <a href="#" th:text="${p.name}" th:href="@{/tags/view/{id}/(id=${p.tag_id})}"></a>
                         </article>
                     </div>
-                    
+
                     <button type="button" id="showMoreTags" class="showMoreTags" onclick="showMoreTags()">Show more</button>
                 </div>
             </div>
             <div class="leftcolumn">
                 <div class="card">
+                    <div th:if="${param.success}" class="alert-success">    
+                        Your post has been created.
+                    </div>
+                    <div th:if="${param.error}" class="alert-danger">    
+                        Something went wrong: Your post has NOT been created - please ensure all fields are full.
+                    </div>
+                    <div th:if="${param.tagSuccess}" class="alert-success">    
+                        Your tag has been created.
+                    </div>
+                    <div th:if="${param.tagError}" class="alert-danger">    
+                        Something went wrong: Your tag has NOT been created - please ensure it does not already exist.
+                    </div>
                     <h2>Ask a question:</h2>
                     <form method="post" th:object="${postForm}" th:action="@{/posts/create}">
                         <div><label for="post">Select your tag</label></div> 
@@ -47,10 +59,9 @@
 
                         <div><input type="submit" value="Submit"/></div>
                     </form>
-                    <button type="button" id="showForm" class="showForm" onclick="showForm()">Create Tag</button>
 
                     <h2>Create a tag:</h2>
-                    <form method="post" th:object="${tagForm}" action="createTag" id="createTagForm" style="display:none">
+                    <form method="post" th:object="${tagForm}" action="createTag" id="createTagForm">
                         <div><label for="tagName">Tag Name:</label></div>
                         <input id="tagName" type="text" name="tagName" th:value="${tagName}"/>
                         <span class="formError" th:if="${#fields.hasErrors('tagName')}" th:errors="*{tagName}"></span>

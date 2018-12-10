@@ -93,7 +93,6 @@ public class AdminController {
     }
 
     private String getPrincipal() {
-        String userName = null;
         String principal = SecurityContextHolder.getContext().getAuthentication().getName();
         String principal2 = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
 

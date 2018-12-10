@@ -4,8 +4,4 @@ function showMoreTags() {
     $("#showtags2").show();
 }
 
-function showForm() {
-    $("#tagCreate").show();
-}
-
 

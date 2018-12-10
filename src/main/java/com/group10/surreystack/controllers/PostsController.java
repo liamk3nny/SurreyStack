@@ -108,7 +108,7 @@ public class PostsController {
         model.addAttribute("postComments", sortComments(postComments));
         
         if (bindingResult.hasErrors()) {
-             return "posts/view";
+             return "redirect:/posts/view/{id}?error";
         }
         
         String principal = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -121,7 +121,7 @@ public class PostsController {
         c.setDate(date);
         commentService.create(c);
         
-        return "/posts/view";
+        return "redirect:/posts/view/{id}";
     }
     
     /**

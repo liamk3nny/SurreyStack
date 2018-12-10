@@ -60,6 +60,8 @@ public class CreatePostController {
     public String createPost(Model model, TagForm tagForm, PostForm postForm) {
         List<Tag> alltags = tagService.findAll();
         model.addAttribute("alltags", alltags);
+        model.addAttribute("principal", getPrincipal());
+
 
         return "posts/createPost";
     }
@@ -98,10 +100,7 @@ public class CreatePostController {
      * @return
      */
     @RequestMapping(value = "/posts/create", method = RequestMethod.POST)
-    public String createPost(@Valid PostForm postForm, BindingResult bindingResult, Model model, TagForm tagForm) {
-        List<Tag> alltags = tagService.findAll();
-        model.addAttribute("alltags", alltags);
-        model.addAttribute("principal", getPrincipal());
+    public String createPost(@Valid PostForm postForm, BindingResult bindingResult) {
 
         Tag tag = tagService.findByName(postForm.getTagName());
         if (tag == null) {
@@ -109,7 +108,7 @@ public class CreatePostController {
         }
 
         if (bindingResult.hasErrors()) {
-            return "posts/createPost";
+            return "redirect:/posts/create?error";
         }
 
         String principal = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -123,7 +122,7 @@ public class CreatePostController {
         p.setDate(date);
         postService.create(p);
 
-        return "posts/createPost";
+        return "redirect:/posts/create?success";
     }
 
     /**
@@ -140,10 +139,7 @@ public class CreatePostController {
      * @return
      */
     @RequestMapping(value = "/posts/createTag", method = RequestMethod.POST)
-    public String createTag(@Valid TagForm tagForm, BindingResult bindingResult, Model model, PostForm postForm) {
-        List<Tag> alltags = tagService.findAll();
-        model.addAttribute("alltags", alltags);
-        model.addAttribute("principal", getPrincipal());
+    public String createTag(@Valid TagForm tagForm, BindingResult bindingResult) {
 
         Tag tag = tagService.findByName(tagForm.getTagName());
         if (tag != null) {
@@ -151,13 +147,13 @@ public class CreatePostController {
         }
 
         if (bindingResult.hasErrors()) {
-            return "posts/createPost";
+            return "redirect:/posts/create?tagError";
         }
 
         Tag t = new Tag();
         t.setName(tagForm.getTagName());
         tagService.create(t);
-        return "posts/createPost";
+        return "redirect:/posts/create?tagSuccess";
     }
 
     /**

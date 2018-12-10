@@ -39,6 +39,9 @@
             </div>
 
             <div class="leftcolumn">
+                <div th:if="${param.error}" class="alert-danger">    
+                    Something went wrong: Your comment was NOT been posted - please ensure your comment is not null.
+                </div>
 
                 <main id="posts">
                     <div class="card">
