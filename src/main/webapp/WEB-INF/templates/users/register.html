@@ -7,13 +7,10 @@
     </head>
 
     <body>
-
-        <header th:replace="layout :: site-header"></header>
-
         <h1>Register</h1>
 
         <form method="post" th:object="${registerForm}" th:action="@{/users/register}" action="#">
-            <div th:if="${param.error}" class="alert-success"> 
+            <div th:if="${param.error}" class="alert-danger"> 
                 There has been a problem with your registration.
             </div>
             <div th:if="${param.registered}" class="alert-success"> 
