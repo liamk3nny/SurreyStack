@@ -21,11 +21,11 @@ public class RegisterForm {
     private String username;
     
     @NotEmpty(message = "Please enter a password")
-    @Size(min=1, max=50, message = "password size should be greater than 5 characters")
+    @Size(min=5, max=50, message = "password size should be greater than 5 characters")
     private String password;
     
     @NotEmpty(message = "Please enter your name")
-    @Size(min=1, max=50)
+    @Size(min=5, max=50)
     private String name;
     
     public String getName() {
