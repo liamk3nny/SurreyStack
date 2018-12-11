@@ -43,8 +43,8 @@
                     </div>
                     <h2>Ask a question:</h2>
                     <form method="post" th:object="${postForm}" th:action="@{/posts/create}">
-                        <div><label for="post">Select your tag</label></div> 
-                        <input id="tagName" type="text" name="tagName" th:value="${tagName}"/>
+                        <div><label for="post">Enter your tag</label></div> 
+                        <input id="tagName" type="text" name="tagName" th:value="${tagName}" placeholder="Type in your tag name"/>
                         <span class="formError" th:if="${#fields.hasErrors('tagName')}" th:errors="*{tagName}"></span>
 
 
@@ -53,7 +53,7 @@
                         <span class="formError" th:if="${#fields.hasErrors('postTitle')}" th:errors="*{postTitle}"></span>
 
                         <div><label for="post">Body</label></div>
-                        <textarea id="postBody" type="text" name="postBody" th:value="${postBody}" rows="5" cols="50"></textarea>
+                        <textarea id="postBody" type="text" name="postBody" th:value="${postBody}" rows="5" cols="50" placeholder="Describe your problem here..."></textarea>
                         <span class="formError" th:if="${#fields.hasErrors('postBody')}" th:errors="*{postBody}"></span>
 
 
@@ -63,9 +63,9 @@
                     <h2>Create a tag:</h2>
                     <form method="post" th:object="${tagForm}" action="createTag" id="createTagForm">
                         <div><label for="tagName">Tag Name:</label></div>
-                        <input id="tagN" type="text" name="tagName" th:value="${tagName}"/>
+                        <input id="tagN" type="text" name="tagName" th:value="${tagName}" placeholder="Enter a new tag name"/>
                         <span class="formError" th:if="${#fields.hasErrors('tagName')}" th:errors="*{tagName}"></span>
-                        <div><input type="submit" value="Create"/></div>
+                        <div style="padding-top: 5px"><input type="submit" value="Create"/></div>
                     </form>
                 </div>
             </div>

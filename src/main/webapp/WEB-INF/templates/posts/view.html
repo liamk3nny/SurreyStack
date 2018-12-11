@@ -66,7 +66,7 @@
 
                         <form method="post" th:object="${commentForm}" id="commentForm">
                             <div><label for="commentBody">Leave a comment:</label></div>
-                            <input id="commentBody" type="text" name="commentBody" th:value="${commentBody}"/>
+                            <textarea id="commentBody" type="text" name="commentBody" th:value="${commentBody}"></textarea>
                             <span class="commentBody" th:if="${#fields.hasErrors('commentBody')}" th:errors="*{commentBody}"></span>
                             <div><input type="submit" value="Submit"/></div>
                         </form>
