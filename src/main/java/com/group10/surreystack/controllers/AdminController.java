@@ -47,7 +47,7 @@ public class AdminController {
         this.userService = userService;
     }
 
-    @RequestMapping(value = "/users/admin", method = RequestMethod.GET)
+    @RequestMapping(value = "/users/admin/**", method = RequestMethod.GET)
     public String register(DeleteUserForm deleteUserForm, DeletePostForm deletePostForm, DeleteTagForm deleteTagForm, DeleteCommentForm deleteCommentForm, Model model) {
         model.addAttribute("principal", getPrincipal());
 
@@ -66,7 +66,7 @@ public class AdminController {
         }
         
 
-        return "redirect:/users/admin";
+        return "redirect:/users/admin?deletedUser";
     }
 
     @RequestMapping(value="/users/admin/deleteTag")
@@ -81,7 +81,7 @@ public class AdminController {
         }
         
 
-        return "redirect:/users/admin";
+        return "redirect:/users/admin?deletedTag";
     }
 
     @RequestMapping(value="/users/admin/deletePost")
@@ -96,7 +96,7 @@ public class AdminController {
         }
         
 
-        return "redirect:/users/admin";
+        return "redirect:/users/admin?deletedPost";
     }
 
     @RequestMapping(value="/users/admin/deleteComment")
@@ -111,7 +111,7 @@ public class AdminController {
         }
         
 
-        return "redirect:/users/admin";
+        return "redirect:/users/admin?deletedComment";
     }
 
     private String getPrincipal() {
