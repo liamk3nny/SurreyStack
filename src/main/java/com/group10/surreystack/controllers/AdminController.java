@@ -47,7 +47,7 @@ public class AdminController {
         this.userService = userService;
     }
 
-    @RequestMapping(value = "/users/admin", method = RequestMethod.GET)
+    @RequestMapping(value = "/users/admin/**", method = RequestMethod.GET)
     public String register(DeleteUserForm deleteUserForm, DeletePostForm deletePostForm, DeleteTagForm deleteTagForm, DeleteCommentForm deleteCommentForm, Model model) {
         model.addAttribute("principal", getPrincipal());
 
