@@ -53,7 +53,7 @@
                         <span class="formError" th:if="${#fields.hasErrors('postTitle')}" th:errors="*{postTitle}"></span>
 
                         <div><label for="post">Body</label></div>
-                        <input id="postBody" type="text" name="postBody" th:value="${postBody}"/>
+                        <textarea id="postBody" type="text" name="postBody" th:value="${postBody}" rows="5" cols="50"></textarea>
                         <span class="formError" th:if="${#fields.hasErrors('postBody')}" th:errors="*{postBody}"></span>
 
 
