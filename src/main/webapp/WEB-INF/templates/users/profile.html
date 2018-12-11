@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
 
     <head th:replace="layout :: site-head">
         <title>Profile</title>
     </head>
     
     <body>
-        <header th:replace="layout :: site-header" />
+        <header th:replace="layout :: site-header"></header>
         
         <h1>Profile</h1>           
             
             <form method="post" th:object="${profileForm}" th:action="@{/users/profile}" action="#">
                 <table>
                     <tr>
-                        <td><label for="fullName">Name:</label></td>
+                        <td><label> Name:</label></td>
                         <td><label for="fullName" th:text="${fullName}">Name:</label></td>
                     </tr>
                     <tr>
@@ -31,7 +31,7 @@
                         <td><span th:if="${param.error}" class="alert-danger">Incorrect Password</span></td>
                     </tr>
                     <tr>
-                        <td><label for="updatePassword">New password</label></td>
+                        <td><label>New password</label></td>
                         <td><input id="password" type="password" th:field="*{password}" placeholder="Password"/></td>
                         <td><span class="formError" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Invalid password</span></td>
                     </tr>
@@ -68,7 +68,6 @@
                 </div>
             </article>
             
-        </main>
         
     </body>
 </html>

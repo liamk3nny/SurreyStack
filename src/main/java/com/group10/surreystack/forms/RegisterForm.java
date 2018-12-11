@@ -6,7 +6,6 @@
 package com.group10.surreystack.forms;
 
 import javax.validation.constraints.Size;
-import org.hibernate.validator.constraints.NotEmpty;
 
 
 /**

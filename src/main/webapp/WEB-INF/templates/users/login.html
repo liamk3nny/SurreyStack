@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
 
     <head th:replace="layout :: site-head">
         <title>Login</title>
@@ -8,8 +8,8 @@
 
     <body>
 
-        <header th:replace="layout :: login-header" />
-        
+        <header th:replace="layout :: login-header"></header>
+
         <h1>Login</h1>
 
         <form method="post" th:object="${loginForm}" th:action="@{/users/login}">
@@ -22,16 +22,16 @@
             <div th:if="${param.registered}" class="alert-success"> 
                 You have successfully registered.
             </div>
-            
+
             <table>
                 <tr>
                     <td><label for="username">Username:</label></td>
-                    <td><input id="username" type="text"  placeholder="Username" required="true" th:field="*{username}"/></td>
+                    <td><input id="username" type="text"  placeholder="Username" th:field="*{username}"/></td>
                     <td><span class="formError" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Invalid username</span></td>
                 </tr>
                 <tr>
                     <td><label for="password">Password:</label></td>
-                    <td><input id="password" type="password" placeholder="Password" required="true" th:field="*{password}" /></td>
+                    <td><input id="password" type="password" placeholder="Password" th:field="*{password}" /></td>
                     <td><span class="formError" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Invalid password</span></td>
                 </tr>
                 <tr>
@@ -40,7 +40,7 @@
                 </tr>
             </table>   
         </form>
-        
+
 
     </body>
 

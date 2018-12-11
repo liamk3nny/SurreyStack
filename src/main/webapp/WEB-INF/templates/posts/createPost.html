@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
 
     <head th:replace="layout :: site-head">
         <title th:text="${post.title}">Create Post</title>        
@@ -63,7 +63,7 @@
                     <h2>Create a tag:</h2>
                     <form method="post" th:object="${tagForm}" action="createTag" id="createTagForm">
                         <div><label for="tagName">Tag Name:</label></div>
-                        <input id="tagName" type="text" name="tagName" th:value="${tagName}"/>
+                        <input id="tagN" type="text" name="tagName" th:value="${tagName}"/>
                         <span class="formError" th:if="${#fields.hasErrors('tagName')}" th:errors="*{tagName}"></span>
                         <div><input type="submit" value="Create"/></div>
                     </form>
@@ -72,7 +72,7 @@
         </div>
 
         <div class="footer">
-            <footer th:replace="layout :: site-footer" />
+            <footer th:replace="layout :: site-footer"></footer>
         </div>
 
     </body>

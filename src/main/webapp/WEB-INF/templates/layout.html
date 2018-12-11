@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
 
     <head th:fragment="site-head">
         <meta charset="UTF-8" />
@@ -33,7 +33,7 @@
         <header th:fragment="admin-header">
             <link rel="stylesheet" href="../../css/styles.css" th:href="@{/css/styles.css}" />
             <a href="index.html" th:href="@{/}"><img src="../../img/site-logo.png" th:src="@{/img/site-logo.png}" alt="whoops" style="width:40px;height:40px;"/> </a>
-            <div id="logged-in-info"> <span>Hello, <b><span th:text="${principal}"></span></b></span>
+            <div id="admin-logged-in-info"> <span>Hello, <b><span th:text="${principal}"></span></b></span>
                 <form th:action="@{/app-logout}" method="post" >
                     <input type="submit" value="Logout"/>
                 </form>

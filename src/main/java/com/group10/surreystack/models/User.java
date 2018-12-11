@@ -45,7 +45,7 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private Set<Post> posts = new HashSet<Post>();
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private Set<Comment> comments = new HashSet<Comment>();
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
