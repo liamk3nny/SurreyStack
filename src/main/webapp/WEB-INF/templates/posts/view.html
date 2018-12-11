@@ -4,18 +4,11 @@
     <head th:include="layout :: site-head">
         <title th:text="${post.title}">View Post</title>
 
-        <script>
-            $(form).submit(function () {
-                return false;
-                alert("hello");
-            });
-        </script>
-
     </head>
 
     <body>
 
-        <header th:include="layout :: site-header" />
+        <header th:include="layout :: site-header"></header>
 
         <div class="row">
             <div class="rightcolumn">
@@ -39,12 +32,11 @@
             </div>
 
             <div class="leftcolumn">
-                <div th:if="${param.error}" class="alert-danger">    
-                    Something went wrong: Your comment was NOT been posted - please ensure your comment is not null.
-                </div>
-
                 <main id="posts">
                     <div class="card">
+                        <div th:if="${param.error}" class="alert-danger">    
+                            Something went wrong: Your comment was NOT been posted - please ensure your comment is not null.
+                        </div>
                         <article th:each="p : ${post}">
                             <h2 class="title" th:text="${p.title}">Post Title</h2>
                             <div class="date">

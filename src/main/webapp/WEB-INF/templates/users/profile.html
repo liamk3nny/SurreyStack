@@ -8,10 +8,7 @@
     <body>
         <header th:replace="layout :: site-header" />
         
-        <h1>Profile</h1>
-        
-        
-            
+        <h1>Profile</h1>           
             
             <form method="post" th:object="${profileForm}" th:action="@{/users/profile}" action="#">
                 <table>
